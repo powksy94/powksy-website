@@ -152,15 +152,15 @@ export default function Services() {
                 ))}
               </ul>
 
-              <a
-                href={app.playStore}
-                className="mt-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-violet-600 border border-white/10 hover:border-violet-500 text-white text-sm px-4 py-2.5 rounded-xl font-medium transition-colors"
+              <button
+                disabled
+                className="mt-auto inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-gray-600 text-sm px-4 py-2.5 rounded-xl font-medium cursor-not-allowed"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M3.18 23.76a2 2 0 0 0 2.18-.22l12.76-7.37-2.9-2.9-12.04 10.49ZM.54 1.1A2 2 0 0 0 0 2.5v19a2 2 0 0 0 .54 1.4l.07.07L11.07 12.5v-.24L.61 1.03l-.07.07ZM20.65 10.23l-2.72-1.57-3.19 3.19 3.19 3.19 2.73-1.58a2.01 2.01 0 0 0 0-3.23ZM3.18.24 15.22 7.53l-2.9 2.9L.36.46A2 2 0 0 1 3.18.24Z"/>
                 </svg>
-                Voir sur le Play Store
-              </a>
+                Bientôt
+              </button>
             </motion.div>
           ))}
         </div>

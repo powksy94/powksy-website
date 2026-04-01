@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold text-white tracking-tight">
+        <a  className="text-xl font-bold text-white tracking-tight">
           <img src={powksyLogo} alt="Powksy" className="h-8 w-auto" />
         </a>
 
