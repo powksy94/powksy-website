@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Globe, Smartphone } from 'lucide-react'
 import dailyFactsLogo from '../assets/daily-facts-logo.png'
 import nocturneLogo from '../assets/nocturne-logo.png'
+import passwordLogo from '../assets/password-mobile-app-logo.png'
 
 const webServices = [
   { label: 'React', color: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' },
@@ -12,7 +13,7 @@ const webServices = [
 const mobileApps = [
   {
     name: 'Password Mobile App',
-    logo: null as string | null,
+    logo: passwordLogo,
     playStore: '#',
     description: [
       'Application mobile multiplateforme avec Flutter',
@@ -64,9 +65,9 @@ export default function Services() {
 
         {/* Web Services */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What we do</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ce que nous faisons</h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            From idea to launch — web apps and mobile experiences built to perform.
+            De l'idée au lancement — des applications web et mobiles conçues pour performer.
           </p>
         </div>
 
@@ -81,7 +82,7 @@ export default function Services() {
             <div className="w-12 h-12 bg-violet-600/20 rounded-xl flex items-center justify-center mb-6">
               <Globe className="text-violet-400" size={24} />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-3">Web Development</h3>
+            <h3 className="text-xl font-semibold text-white mb-3">Développement Web</h3>
             <p className="text-gray-400 leading-relaxed mb-6">
               Sites et applications web modernes, rapides et scalables.
             </p>
@@ -104,7 +105,7 @@ export default function Services() {
             <div className="w-12 h-12 bg-violet-600/20 rounded-xl flex items-center justify-center mb-6">
               <Smartphone className="text-violet-400" size={24} />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-3">Mobile Apps</h3>
+            <h3 className="text-xl font-semibold text-white mb-3">Applications Mobiles</h3>
             <p className="text-gray-400 leading-relaxed mb-6">
               Applications iOS & Android multiplateformes développées avec Flutter.
             </p>

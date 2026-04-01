@@ -14,7 +14,7 @@ export default function Hero() {
                 transition={{ duration: 0.6 }}
                 >
                     <span className="inline-block text-violet-400 text-sm font-medium tracking-widest uppercase mb-6 border border-violet-500/30 px-4 py-1.5 rounded-full">
-                    Apps &  Websites
+                    Applications &amp; Sites Web
                     </span>
                 </motion.div>
 
@@ -24,9 +24,9 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                    We build digital
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400"> products</span>
-                    <br />that matter
+                    Nous créons des
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400"> produits digitaux</span>
+                    <br />qui comptent
                 </motion.h1>
 
                 <motion.p 
@@ -35,7 +35,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2}}
                 >
-                    Powksy crafts modern web applications and mobile apps that based on various thematics.
+                    Powksy conçoit des applications web modernes et des apps mobiles sur diverses thématiques.
                 </motion.p>
 
                 <motion.div 
@@ -48,13 +48,13 @@ export default function Hero() {
                     href="#portfolio"
                     className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white px-8 py-3.5 rounded-xl font-medium transition-colors"
                     >
-                      See our work <ArrowRight size={18} />
+                      Voir nos projets <ArrowRight size={18} />
                     </a>
                     <a
                     href="#contact"
                     className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white px-8 py-3.5 rounded-xl font-medium transition-colors"
                     >
-                      Start a project
+                      Démarrer un projet
                     </a>
 
                 </motion.div>
