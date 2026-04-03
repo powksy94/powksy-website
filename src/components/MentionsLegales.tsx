@@ -1,7 +1,5 @@
 import { X } from 'lucide-react'
-
-const address = import.meta.env.VITE_LEGAL_ADDRESS as string
-const siret = import.meta.env.VITE_LEGAL_SIRET as string
+import { LEGAL_ADDRESS, LEGAL_SIRET } from '../legal-info'
 
 interface Props {
   onClose: () => void
@@ -36,11 +34,11 @@ export default function MentionsLegales({ onClose }: Props) {
               <li><span className="text-gray-500">Statut :</span> Auto-entrepreneur / Micro-entrepreneur</li>
               <li>
                 <span className="text-gray-500">Adresse :</span>{' '}
-                <span className="text-white">{address}</span>
+                <span className="text-white">{LEGAL_ADDRESS}</span>
               </li>
               <li>
                 <span className="text-gray-500">SIRET :</span>{' '}
-                <span className="text-white">{siret}</span>
+                <span className="text-white">{LEGAL_SIRET}</span>
               </li>
               <li>
                 <span className="text-gray-500">Email :</span>{' '}
