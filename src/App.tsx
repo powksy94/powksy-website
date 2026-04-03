@@ -8,10 +8,20 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WelcomePopup from './components/WelcomePopup'
+import MentionsLegales from './components/MentionsLegales'
 
 export default function App() {
   const alreadySeen = !!localStorage.getItem('powksy_welcomed')
   const [ready, setReady] = useState(alreadySeen)
+  const [showLegal, setShowLegal] = useState(false)
+
+  if (showLegal) {
+    return (
+      <div className="min-h-screen bg-gray-950 text-white">
+        <MentionsLegales onClose={() => setShowLegal(false)} />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
@@ -29,7 +39,7 @@ export default function App() {
           <About />
           <Contact />
         </main>
-        <Footer />
+        <Footer onLegalClick={() => setShowLegal(true)} />
       </motion.div>
     </div>
   )
