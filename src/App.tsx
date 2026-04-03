@@ -39,7 +39,7 @@ export default function App() {
           <About />
           <Contact />
         </main>
-        <Footer onLegalClick={() => setShowLegal(true)} />
+        <Footer onLegalClick={() => { setShowLegal(true); window.scrollTo(0, 0) }} />
       </motion.div>
     </div>
   )

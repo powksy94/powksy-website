@@ -13,7 +13,7 @@ export default function MentionsLegales({ onClose }: Props) {
         <div className="flex items-center justify-between mb-10">
           <h1 className="text-3xl font-bold tracking-tight">Mentions légales</h1>
           <button
-            onClick={onClose}
+            onClick={() => { onClose(); window.scrollTo(0, 0) }}
             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
           >
             <X size={18} />
