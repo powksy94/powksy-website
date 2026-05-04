@@ -65,7 +65,7 @@ const projects = [
   {
     title: 'Anecdote Mobile App',
     description: 'App Flutter pour consulter et ajouter des anecdotes, avec navigation fluide et formulaire.',
-    tech: ['Flutter'],
+    tech: ['Flutter', 'Python'],
     link: 'https://github.com/powksy94/anecdote_app',
   },
   {
@@ -83,7 +83,7 @@ const projects = [
   {
     title: 'API Backend - Dating App',
     description: 'Backend TypeScript/Node.js pour la Dating App avec routes RESTful, auth et architecture modulaire.',
-    tech: ['TypeScript', 'Node.js'],
+    tech: ['TypeScript', 'Node.js', 'VanillaJS'],
     link: 'https://github.com/powksy94/dating_app_backend',
   },
   {
