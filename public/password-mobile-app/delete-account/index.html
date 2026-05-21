@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suppression des données — Password Mobile App</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0a0f1e;
+      color: #e0e0e0;
+      line-height: 1.7;
+      padding: 0 16px 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0a0f1e 0%, #0d1b3e 100%);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      padding: 40px 0 32px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #00e5ff;
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    }
+
+    header p { margin-top: 8px; color: #90a4ae; font-size: 0.9rem; }
+
+    main { max-width: 700px; margin: 40px auto; }
+
+    section {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(0, 229, 255, 0.12);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      color: #00e5ff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    p { margin-bottom: 10px; color: #cfd8dc; }
+    p:last-child { margin-bottom: 0; }
+
+    ol, ul { padding-left: 22px; color: #cfd8dc; }
+    ol li, ul li { margin-bottom: 8px; }
+
+    .step {
+      background: rgba(0, 229, 255, 0.06);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .step-num {
+      background: #00e5ff;
+      color: #0a0f1e;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-text { color: #b2ebf2; font-size: 0.95rem; }
+
+    .badge-deleted {
+      display: inline-block;
+      background: rgba(244, 67, 54, 0.15);
+      color: #ef9a9a;
+      border: 1px solid rgba(244, 67, 54, 0.3);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 0.82rem;
+    }
+
+    .badge-kept {
+      display: inline-block;
+      background: rgba(255, 152, 0, 0.15);
+      color: #ffcc80;
+      border: 1px solid rgba(255, 152, 0, 0.3);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 0.82rem;
+    }
+
+    .highlight {
+      background: rgba(0, 229, 255, 0.07);
+      border-left: 3px solid #00e5ff;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      color: #b2ebf2;
+      font-size: 0.9rem;
+    }
+
+    a { color: #00e5ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    footer { text-align: center; color: #546e7a; font-size: 0.85rem; margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🗑️ Suppression des données</h1>
+  <p>Password Mobile App &nbsp;·&nbsp; com.passwordmobileapp.app</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>📱 Depuis l'application (recommandé)</h2>
+    <p>La suppression complète de votre compte et de toutes vos données s'effectue directement dans l'app :</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">Ouvrez <strong>Password Mobile App</strong> et connectez-vous à votre compte.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">Appuyez sur l'icône <strong>⋮ (menu)</strong> en haut à droite.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">Sélectionnez <strong>Paramètres du compte</strong>.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">Faites défiler jusqu'à <strong>Zone dangereuse</strong>, puis appuyez sur <strong>Supprimer mon compte</strong>.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-text">Confirmez la suppression. L'action est <strong>immédiate et irréversible</strong>.</div>
+    </div>
+
+    <div class="highlight">
+      ⚡ La suppression est effective immédiatement. Aucun délai de grâce.
+    </div>
+  </section>
+
+  <section>
+    <h2>📧 Par email</h2>
+    <p>
+      Si vous ne pouvez pas accéder à votre compte, envoyez une demande de suppression à :<br />
+      <a href="mailto:matthieuuzan@gmail.com?subject=Suppression%20de%20compte%20Password%20Mobile%20App">matthieuuzan@gmail.com</a>
+    </p>
+    <p>Précisez l'adresse email associée à votre compte. Nous traiterons votre demande sous <strong>72 heures</strong>.</p>
+  </section>
+
+  <section>
+    <h2>📋 Données supprimées et conservées</h2>
+
+    <p><strong>Supprimées immédiatement :</strong></p>
+    <ul>
+      <li>Adresse email <span class="badge-deleted">supprimé</span></li>
+      <li>Mot de passe haché <span class="badge-deleted">supprimé</span></li>
+      <li>Coffre chiffré (tous vos mots de passe) <span class="badge-deleted">supprimé</span></li>
+      <li>Salt de dérivation <span class="badge-deleted">supprimé</span></li>
+      <li>Tokens d'authentification <span class="badge-deleted">supprimé</span></li>
+    </ul>
+
+    <br />
+
+    <p><strong>Données conservées :</strong></p>
+    <ul>
+      <li>Journaux de connexion anonymisés <span class="badge-kept">max 30 jours</span> — à des fins de sécurité uniquement, sans lien avec votre identité après suppression du compte.</li>
+    </ul>
+
+    <div class="highlight">
+      Aucune donnée permettant de vous identifier n'est conservée après la suppression du compte.
+    </div>
+  </section>
+
+  <section>
+    <h2>🔗 Liens utiles</h2>
+    <ul>
+      <li><a href="https://powksy.com/password-mobile-app/privacy-policy/">Politique de confidentialité complète</a></li>
+      <li>Contact : <a href="mailto:matthieuuzan@gmail.com">matthieuuzan@gmail.com</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Password Mobile App &nbsp;·&nbsp; Tous droits réservés</p>
+</footer>
+
+</body>
+</html>
