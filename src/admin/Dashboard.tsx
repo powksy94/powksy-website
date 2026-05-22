@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
-import { RefreshCw, LogOut, ShieldCheck } from 'lucide-react'
-import { getUsers, updateRole, User } from './api'
+import { RefreshCw, LogOut, ShieldCheck, Users, Vault } from 'lucide-react'
+import { getUsers, updateRole } from './api'
+import type { User } from './api'
+import VaultSection from './vault/VaultSection'
 
 interface Props {
   token: string
@@ -17,7 +19,10 @@ const roleBadge: Record<string, string> = {
   user:       'bg-gray-500/20 text-gray-400 border-gray-500/30',
 }
 
+type Tab = 'users' | 'vault'
+
 export default function Dashboard({ token, role, onLogout }: Props) {
+  const [tab, setTab] = useState<Tab>('users')
   const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -82,20 +87,36 @@ export default function Dashboard({ token, role, onLogout }: Props) {
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => fetchUsers()}
-              disabled={loading}
-              className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 disabled:opacity-40"
-            >
-              <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
-              Actualiser
-            </button>
+            <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1">
+              <button
+                onClick={() => setTab('users')}
+                className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors ${tab === 'users' ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-gray-300'}`}
+              >
+                <Users size={13} /> Utilisateurs
+              </button>
+              {role === 'admin' && (
+                <button
+                  onClick={() => setTab('vault')}
+                  className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors ${tab === 'vault' ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-gray-300'}`}
+                >
+                  <Vault size={13} /> Vault
+                </button>
+              )}
+            </div>
+            {tab === 'users' && (
+              <button
+                onClick={() => fetchUsers()}
+                disabled={loading}
+                className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 disabled:opacity-40"
+              >
+                <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
+              </button>
+            )}
             <button
               onClick={onLogout}
               className="flex items-center gap-1.5 text-gray-500 hover:text-red-400 transition-colors text-sm px-3 py-1.5 rounded-lg hover:bg-white/5"
             >
               <LogOut size={14} />
-              Déconnexion
             </button>
           </div>
         </div>
@@ -103,23 +124,24 @@ export default function Dashboard({ token, role, onLogout }: Props) {
 
       {/* Content */}
       <div className="max-w-5xl mx-auto px-6 py-8">
-        {isReadOnly && (
+        {tab === 'vault' && <VaultSection token={token} />}
+        {tab === 'users' && isReadOnly && (
           <div className="mb-4 text-xs text-blue-400 bg-blue-500/10 border border-blue-500/20 rounded-lg px-4 py-2">
             Mode lecture seule — modification des rôles désactivée.
           </div>
         )}
 
-        {saveError && (
+        {tab === 'users' && saveError && (
           <div className="mb-4 text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-2">
             {saveError}
           </div>
         )}
 
-        {loading && !users.length && (
+        {tab === 'users' && loading && !users.length && (
           <div className="text-center py-20 text-gray-500">Chargement…</div>
         )}
 
-        {error && (
+        {tab === 'users' && error && (
           <div className="text-center py-20">
             <p className="text-red-400 mb-3">{error}</p>
             <button onClick={() => fetchUsers()} className="text-sm text-gray-400 hover:text-white transition-colors">
@@ -128,11 +150,11 @@ export default function Dashboard({ token, role, onLogout }: Props) {
           </div>
         )}
 
-        {!loading && !error && users.length === 0 && (
+        {tab === 'users' && !loading && !error && users.length === 0 && (
           <div className="text-center py-20 text-gray-500">Aucun utilisateur trouvé.</div>
         )}
 
-        {users.length > 0 && (
+        {tab === 'users' && users.length > 0 && (
           <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
             <table className="w-full text-sm">
               <thead>
