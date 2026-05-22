@@ -15,6 +15,7 @@ export default function AuthScreen({ onAuthenticated }: Props) {
   const [phase, setPhase] = useState<Phase>('idle')
   const [timeLeft, setTimeLeft] = useState(MAX_SECONDS)
   const [sessionId, setSessionId] = useState<string | null>(null)
+  const [email, setEmail] = useState('')
   const abortRef = useRef<AbortController | null>(null)
 
   useEffect(() => {
@@ -67,7 +68,7 @@ export default function AuthScreen({ onAuthenticated }: Props) {
     setPhase('idle')
     setTimeLeft(MAX_SECONDS)
     try {
-      const { sessionId: id } = await requestAdminAuth()
+      const { sessionId: id } = await requestAdminAuth(email)
       setSessionId(id)
       setPhase('waiting')
     } catch {
@@ -104,9 +105,17 @@ export default function AuthScreen({ onAuthenticated }: Props) {
               <p className="text-gray-400 text-sm mb-6">
                 Une notification push sera envoyée sur votre téléphone admin pour valider l'accès.
               </p>
+              <input
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="Email admin"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 text-sm mb-4 outline-none focus:border-violet-500 transition-colors"
+              />
               <button
                 onClick={handleRequest}
-                className="w-full bg-violet-600 hover:bg-violet-500 transition-colors text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2"
+                disabled={!email}
+                className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed transition-colors text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2"
               >
                 <Smartphone size={18} />
                 Demander l'accès

@@ -40,8 +40,12 @@ export function parseJwtPayload(token: string): Record<string, unknown> {
   }
 }
 
-export async function requestAdminAuth(): Promise<{ sessionId: string }> {
-  const res = await fetch(`${BASE}/admin-auth/request`, { method: 'POST' })
+export async function requestAdminAuth(email: string): Promise<{ sessionId: string }> {
+  const res = await fetch(`${BASE}/admin-auth/request`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  })
   if (!res.ok) throw new Error('Échec de la demande')
   return res.json()
 }
