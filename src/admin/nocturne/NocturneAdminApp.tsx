@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import AuthScreen from './AuthScreen'
+import AuthScreen from './auth/AuthScreen'
 import Dashboard from './Dashboard'
 
 function loadToken(): string | null {

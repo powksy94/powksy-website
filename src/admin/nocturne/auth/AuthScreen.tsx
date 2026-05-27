@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Smartphone, Clock, XCircle } from 'lucide-react'
-import { requestAdminAuth, pollAuthStatus, parseJwtPayload } from './api'
+import { requestAdminAuth, pollAuthStatus, parseJwtPayload } from '../api'
 
 interface Props {
   onAuthenticated: (token: string) => void

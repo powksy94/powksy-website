@@ -1,20 +1,47 @@
 const BASE = 'https://datingappbackend-production-a9e3.up.railway.app'
 
+export interface StatTrend {
+  deltaPercent?: number   // ex: +12.5 ou -3.2
+  delta?: number          // ex: +89 en valeur absolue
+  secondaryValue?: number
+  secondaryLabel?: string // ex: "actifs aujourd'hui", "cette semaine"
+}
+
 export interface Stats {
   users: number
   profiles: number
   likes: number
   matches: number
   messages: number
+  // Champs optionnels — renvoyés si le backend les supporte
+  trends?: {
+    users?: StatTrend
+    profiles?: StatTrend
+    likes?: StatTrend
+    matches?: StatTrend
+    messages?: StatTrend
+  }
 }
 
 export interface NocturneEvent {
   id: string
   name: string
   date: string
+  endDate?: string
   location?: string
+  address?: string
   description?: string
   createdAt?: string
+  type?: string
+  maxAttendees?: number
+  attendeesCount?: number
+  imageUrl?: string
+  tags?: string[]
+  organizer?: {
+    id: string
+    username?: string
+    email?: string
+  }
 }
 
 export interface AuthStatusResponse {
