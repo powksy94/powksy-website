@@ -1,10 +1,16 @@
 const BASE = 'https://datingappbackend-production-a9e3.up.railway.app'
 
+export interface HistoryPoint {
+  date: string   // ex: "2026-05-20"
+  value: number
+}
+
 export interface StatTrend {
-  deltaPercent?: number   // ex: +12.5 ou -3.2
-  delta?: number          // ex: +89 en valeur absolue
+  deltaPercent?: number
+  delta?: number
   secondaryValue?: number
-  secondaryLabel?: string // ex: "actifs aujourd'hui", "cette semaine"
+  secondaryLabel?: string
+  history?: HistoryPoint[]
 }
 
 export interface Stats {
