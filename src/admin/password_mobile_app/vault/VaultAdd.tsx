@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { X, FileKey, FileText } from 'lucide-react'
-import { addVaultItem, VaultItem } from '../api'
+import { addVaultItem } from '../api'
+import type { VaultItem } from '../api'
 import { encryptBytes } from './crypto'
 
 interface Props {
@@ -27,7 +28,7 @@ export default function VaultAdd({ vaultKey, token, onAdded, onClose }: Props) {
     setAdding(true)
     setError(null)
     try {
-      let bytes: Uint8Array
+      let bytes: Uint8Array<ArrayBuffer>
       let fileName: string | undefined
       if (type === 'note') {
         bytes = new TextEncoder().encode(content)

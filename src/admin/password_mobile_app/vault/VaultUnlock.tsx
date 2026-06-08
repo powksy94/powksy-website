@@ -7,7 +7,7 @@ interface Props {
   onUnlocked: (key: CryptoKey) => void
 }
 
-type Phase = 'idle' | 'waiting' | 'denied' | 'timeout' | 'error'
+type Phase = 'idle' | 'waiting' | 'denied' | 'timeout' | 'expired' | 'error'
 
 const MAX_SECONDS = 300
 const POLL_MS = 3000
@@ -37,6 +37,7 @@ export default function VaultUnlock({ token, onUnlocked }: Props) {
           return
         }
         if (data.status === 'denied') { setPhase('denied'); return }
+        if (data.status === 'expired') { setPhase('expired'); return }
       } catch (e) {
         if ((e as Error).name === 'AbortError') return
       }
@@ -111,11 +112,11 @@ export default function VaultUnlock({ token, onUnlocked }: Props) {
             </div>
           )}
 
-          {(phase === 'denied' || phase === 'timeout' || phase === 'error') && (
+          {(phase === 'denied' || phase === 'timeout' || phase === 'expired' || phase === 'error') && (
             <div className="text-center space-y-4">
               <XCircle className="text-red-400 mx-auto" size={32} />
               <p className="text-white font-medium text-sm">
-                {phase === 'denied' ? 'Accès refusé' : phase === 'timeout' ? 'Délai expiré' : 'Erreur réseau'}
+                {phase === 'denied' ? 'Accès refusé' : (phase === 'timeout' || phase === 'expired') ? 'Délai expiré' : 'Erreur réseau'}
               </p>
               <button
                 onClick={reset}

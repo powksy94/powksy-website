@@ -6,7 +6,7 @@ interface Props {
   onAuthenticated: (token: string, role: string) => void
 }
 
-type Phase = 'idle' | 'waiting' | 'denied' | 'timeout' | 'error'
+type Phase = 'idle' | 'waiting' | 'denied' | 'timeout' | 'expired' | 'error'
 
 const POLL_INTERVAL = 3000
 const MAX_SECONDS = 300
@@ -40,6 +40,10 @@ export default function AuthScreen({ onAuthenticated }: Props) {
         }
         if (data.status === 'denied') {
           setPhase('denied')
+          return
+        }
+        if (data.status === 'expired') {
+          setPhase('expired')
           return
         }
       } catch (e) {
@@ -143,17 +147,17 @@ export default function AuthScreen({ onAuthenticated }: Props) {
             </div>
           )}
 
-          {(phase === 'denied' || phase === 'timeout' || phase === 'error') && (
+          {(phase === 'denied' || phase === 'timeout' || phase === 'expired' || phase === 'error') && (
             <div className="text-center">
               <XCircle className="text-red-400 mx-auto mb-3" size={36} />
               <p className="text-white font-medium mb-1">
                 {phase === 'denied' && 'Accès refusé'}
-                {phase === 'timeout' && 'Délai expiré'}
+                {(phase === 'timeout' || phase === 'expired') && 'Délai expiré'}
                 {phase === 'error' && 'Erreur réseau'}
               </p>
               <p className="text-gray-400 text-sm mb-5">
                 {phase === 'denied' && 'La demande a été refusée depuis le téléphone.'}
-                {phase === 'timeout' && 'La session a expiré après 5 minutes.'}
+                {(phase === 'timeout' || phase === 'expired') && 'La session a expiré après 5 minutes.'}
                 {phase === 'error' && 'Impossible de joindre le serveur.'}
               </p>
               <button

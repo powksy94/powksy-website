@@ -19,13 +19,23 @@ export default function VaultSection({ token }: Props) {
   useEffect(() => {
     if (!vaultKey) return
     const controller = new AbortController()
-    setLoading(true)
-    getVault(token, controller.signal)
-      .then(data => setItems(data.items))
-      .catch(() => {})
-      .finally(() => setLoading(false))
-    return () => controller.abort()
-  }, [vaultKey])
+    let cancelled = false
+
+    const load = async () => {
+      setLoading(true)
+      try {
+        const data = await getVault(token, controller.signal)
+        if (!cancelled) setItems(data.items)
+      } catch {
+        // ignore — abandon silencieux si la requête échoue ou est annulée
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    load()
+
+    return () => { cancelled = true; controller.abort() }
+  }, [vaultKey, token])
 
   if (!vaultKey) return <VaultUnlock token={token} onUnlocked={setVaultKey} />
 

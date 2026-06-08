@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FileKey, FileText, Eye, EyeOff, Download, Trash2, Copy, Check } from 'lucide-react'
-import { VaultItem, deleteVaultItem } from '../api'
+import { deleteVaultItem } from '../api'
+import type { VaultItem } from '../api'
 import { decryptBytes } from './crypto'
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
   onDeleted: (id: string) => void
 }
 
-function downloadBlob(bytes: Uint8Array, fileName: string) {
+function downloadBlob(bytes: Uint8Array<ArrayBuffer>, fileName: string) {
   const url = URL.createObjectURL(new Blob([bytes], { type: 'application/octet-stream' }))
   Object.assign(document.createElement('a'), { href: url, download: fileName }).click()
   URL.revokeObjectURL(url)

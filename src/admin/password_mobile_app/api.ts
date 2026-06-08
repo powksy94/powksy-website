@@ -18,17 +18,16 @@ export interface VaultItem {
 }
 
 export interface VaultData {
-  salt: string       // base64, global per vault, created by backend on first GET
   items: VaultItem[]
 }
 
 // Backend endpoints required:
-//   GET    /admin/vault           → VaultData (creates salt on first call)
+//   GET    /admin/vault           → VaultData
 //   POST   /admin/vault           → VaultItem  body: Omit<VaultItem, 'id'|'createdAt'>
 //   DELETE /admin/vault/:id       → 204
 
 export interface AuthStatusResponse {
-  status: 'pending' | 'approved' | 'denied'
+  status: 'pending' | 'approved' | 'denied' | 'expired'
   token?: string
 }
 
@@ -75,14 +74,14 @@ export async function updateRole(token: string, userId: string, role: string): P
 }
 
 export interface VaultAuthStatus {
-  status: 'pending' | 'approved' | 'denied'
+  status: 'pending' | 'approved' | 'denied' | 'expired'
   vaultKey?: string // base64 raw AES-256 key, returned on approval
 }
 
 // Backend endpoints required:
 //   POST /admin/vault/auth           → { sessionId }  (sends push notification)
 //   GET  /admin/vault/auth/:id       → VaultAuthStatus
-//   GET  /admin/vault                → VaultData (creates salt on first call)
+//   GET  /admin/vault                → VaultData
 //   POST /admin/vault                → VaultItem
 //   DELETE /admin/vault/:id          → 204
 
@@ -134,4 +133,21 @@ export async function deleteVaultItem(token: string, id: string): Promise<void> 
     headers: { Authorization: `Bearer ${token}` },
   })
   if (!res.ok) throw new Error('Suppression échouée')
+}
+
+export interface VaultStrengthStats {
+  total: number
+  strong: number
+  medium: number
+  weak: number
+  unrated: number
+}
+
+export async function getUserVaultStats(token: string, userId: string, signal: AbortSignal): Promise<VaultStrengthStats> {
+  const res = await fetch(`${BASE}/admin/users/${userId}/vault-stats`, {
+    headers: { Authorization: `Bearer ${token}` },
+    signal,
+  })
+  if (!res.ok) throw new Error('Échec de la récupération des statistiques')
+  return res.json()
 }
