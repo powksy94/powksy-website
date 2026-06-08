@@ -92,6 +92,12 @@ const projects = [
     tech: ['COBOL'],
     link: 'https://github.com/powksy94/Cobol_test_transaction',
   },
+  {
+    title: 'Cube Game (C# / WPF)',
+    description: 'Application desktop WPF en C# avec architecture en couches (Core, logique de jeu, interface).',
+    tech: ['C#'],
+    link: 'https://github.com/powksy94/cube-csharp-project',
+  },
 ]
 
 export default function Portfolio() {
