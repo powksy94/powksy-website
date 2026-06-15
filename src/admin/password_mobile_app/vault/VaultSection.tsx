@@ -86,6 +86,7 @@ export default function VaultSection({ token }: Props) {
             vaultKey={vaultKey}
             token={token}
             onDeleted={id => setItems(prev => prev.filter(i => i.id !== id))}
+            onUpdated={updated => setItems(prev => prev.map(i => i.id === updated.id ? updated : i))}
           />
         ))}
       </div>

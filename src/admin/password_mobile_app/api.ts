@@ -127,6 +127,20 @@ export async function addVaultItem(
   return res.json()
 }
 
+export async function updateVaultItem(
+  token: string,
+  id: string,
+  item: Omit<VaultItem, 'id' | 'createdAt'>
+): Promise<VaultItem> {
+  const res = await fetch(`${BASE}/admin/vault/${id}`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(item),
+  })
+  if (!res.ok) throw new Error('Modification échouée')
+  return res.json()
+}
+
 export async function deleteVaultItem(token: string, id: string): Promise<void> {
   const res = await fetch(`${BASE}/admin/vault/${id}`, {
     method: 'DELETE',
