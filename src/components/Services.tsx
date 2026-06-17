@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Globe, Smartphone } from 'lucide-react'
 import dailyFactsLogo from '../assets/daily-facts-logo.png'
 import nocturneLogo from '../assets/nocturne-logo.png'
 import passwordLogo from '../assets/password-mobile-app-logo.png'
+import BetaTesterModal from './beta-tester/BetaTesterModal'
 
 const webServices = [
   { label: 'React', color: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' },
@@ -59,7 +61,10 @@ const mobileApps = [
 ]
 
 export default function Services() {
+  const [betaApp, setBetaApp] = useState<string | null>(null)
+
   return (
+    <>
     <section id="services" className="py-24 bg-gray-950">
       <div className="max-w-6xl mx-auto px-6">
 
@@ -165,15 +170,23 @@ export default function Services() {
                   Voir sur Play Store
                 </a>
               ) : (
-                <button
-                  disabled
-                  className="mt-auto inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-gray-600 text-sm px-4 py-2.5 rounded-xl font-medium cursor-not-allowed"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M3.18 23.76a2 2 0 0 0 2.18-.22l12.76-7.37-2.9-2.9-12.04 10.49ZM.54 1.1A2 2 0 0 0 0 2.5v19a2 2 0 0 0 .54 1.4l.07.07L11.07 12.5v-.24L.61 1.03l-.07.07ZM20.65 10.23l-2.72-1.57-3.19 3.19 3.19 3.19 2.73-1.58a2.01 2.01 0 0 0 0-3.23ZM3.18.24 15.22 7.53l-2.9 2.9L.36.46A2 2 0 0 1 3.18.24Z"/>
-                  </svg>
-                  Bientôt
-                </button>
+                <div className="mt-auto flex gap-2">
+                  <button
+                    disabled
+                    className="flex-1 inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-gray-600 text-sm px-4 py-2.5 rounded-xl font-medium cursor-not-allowed"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M3.18 23.76a2 2 0 0 0 2.18-.22l12.76-7.37-2.9-2.9-12.04 10.49ZM.54 1.1A2 2 0 0 0 0 2.5v19a2 2 0 0 0 .54 1.4l.07.07L11.07 12.5v-.24L.61 1.03l-.07.07ZM20.65 10.23l-2.72-1.57-3.19 3.19 3.19 3.19 2.73-1.58a2.01 2.01 0 0 0 0-3.23ZM3.18.24 15.22 7.53l-2.9 2.9L.36.46A2 2 0 0 1 3.18.24Z"/>
+                    </svg>
+                    Bientôt
+                  </button>
+                  <button
+                    onClick={() => setBetaApp(app.name)}
+                    className="inline-flex items-center justify-center gap-1.5 bg-violet-600/15 border border-violet-500/30 text-violet-400 hover:bg-violet-600/25 hover:border-violet-500/60 transition-colors text-sm px-3 py-2.5 rounded-xl font-medium"
+                  >
+                    Tester
+                  </button>
+                </div>
               )}
             </motion.div>
           ))}
@@ -181,5 +194,10 @@ export default function Services() {
 
       </div>
     </section>
+
+    {betaApp && (
+      <BetaTesterModal appName={betaApp} onClose={() => setBetaApp(null)} />
+    )}
+    </>
   )
 }
