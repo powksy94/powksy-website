@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage({ config }: Props) {
     <div className="privacy-page" style={vars}>
       <header className="privacy-header">
         <h1>{config.emoji} {config.appName}</h1>
-        <p>Politique de confidentialité &nbsp;·&nbsp; Dernière mise à jour : {config.updatedLabel}</p>
+        <p>{config.docLabel ?? 'Politique de confidentialité'} &nbsp;·&nbsp; Dernière mise à jour : {config.updatedLabel}</p>
       </header>
 
       <main className="privacy-main">

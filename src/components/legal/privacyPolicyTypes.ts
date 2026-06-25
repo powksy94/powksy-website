@@ -23,6 +23,7 @@ export interface PrivacyPolicySection {
 export interface PrivacyPolicyConfig {
   appName: string
   emoji: string
+  docLabel?: string
   updatedLabel: string
   footerYear: number
   theme: PrivacyTheme

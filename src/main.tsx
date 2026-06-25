@@ -8,6 +8,7 @@ import NocturneAdminApp from './admin/nocturne/NocturneAdminApp.tsx'
 import PrivacyPolicyPage from './components/legal/PrivacyPolicyPage.tsx'
 import { passwordMobileAppPrivacyPolicy } from './content/privacyPolicy.passwordMobileApp.tsx'
 import { nocturnePrivacyPolicy } from './content/privacyPolicy.nocturne.tsx'
+import { nocturneTermsOfService } from './content/termsOfService.nocturne.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/xK9-nocturne/*" element={<NocturneAdminApp />} />
         <Route path="/password-mobile-app/privacy-policy" element={<PrivacyPolicyPage config={passwordMobileAppPrivacyPolicy} />} />
         <Route path="/nocturne/privacy-policy" element={<PrivacyPolicyPage config={nocturnePrivacyPolicy} />} />
+        <Route path="/nocturne/terms-of-service" element={<PrivacyPolicyPage config={nocturneTermsOfService} />} />
         <Route path="/*" element={<App />} />
       </Routes>
     </BrowserRouter>
