@@ -9,6 +9,7 @@ import LocalizedLegalPage from './components/legal/LocalizedLegalPage.tsx'
 import { passwordMobileAppPrivacyPolicies } from './content/privacyPolicy.passwordMobileApp.tsx'
 import { nocturnePrivacyPolicies } from './content/privacyPolicy.nocturne.tsx'
 import { nocturneTermsOfServices } from './content/termsOfService.nocturne.tsx'
+import { passwordMobileAppTermsOfServices } from './content/termsOfService.passwordMobileApp.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/password-mobile-app/privacy-policy" element={<LocalizedLegalPage configs={passwordMobileAppPrivacyPolicies} />} />
         <Route path="/nocturne/privacy-policy" element={<LocalizedLegalPage configs={nocturnePrivacyPolicies} />} />
         <Route path="/nocturne/terms-of-service" element={<LocalizedLegalPage configs={nocturneTermsOfServices} />} />
+        <Route path="/password-mobile-app/terms-of-service" element={<LocalizedLegalPage configs={passwordMobileAppTermsOfServices} />} />
         <Route path="/*" element={<App />} />
       </Routes>
     </BrowserRouter>
