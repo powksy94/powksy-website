@@ -1,5 +1,16 @@
 import type { ReactNode } from 'react'
 
+export interface SectionTranslation {
+  title: string
+  content: ReactNode
+}
+
+export interface PolicyTranslation {
+  docLabel?: string
+  updatedLabel: string
+  sections: Record<string, SectionTranslation>
+}
+
 export interface PrivacyTheme {
   bg: string
   headerGradientEnd: string
