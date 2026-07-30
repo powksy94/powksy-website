@@ -88,13 +88,30 @@ export async function getStats(token: string, signal?: AbortSignal): Promise<Sta
   return res.json()
 }
 
+type RawNocturneEvent = Omit<NocturneEvent, 'id' | 'organizer'> & {
+  id?: string
+  _id?: string
+  organizer?: { id?: string; _id?: string; username?: string; email?: string }
+}
+
+function normalizeEvent(raw: RawNocturneEvent): NocturneEvent {
+  return {
+    ...raw,
+    id: raw.id ?? raw._id ?? '',
+    organizer: raw.organizer
+      ? { ...raw.organizer, id: raw.organizer.id ?? raw.organizer._id ?? '' }
+      : undefined,
+  }
+}
+
 export async function getPendingEvents(token: string, signal?: AbortSignal): Promise<NocturneEvent[]> {
   const res = await fetch(`${BASE}/api/events/pending`, {
     headers: { Authorization: `Bearer ${token}` },
     signal,
   })
   if (!res.ok) throw new Error('Impossible de charger les événements')
-  return res.json()
+  const data: RawNocturneEvent[] = await res.json()
+  return data.map(normalizeEvent)
 }
 
 async function throwWithServerDetail(res: Response, fallback: string): Promise<never> {
