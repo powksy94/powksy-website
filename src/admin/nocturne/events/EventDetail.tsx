@@ -4,6 +4,7 @@ import type { NocturneEvent } from '../api'
 interface Props {
   event: NocturneEvent
   actionLoading: string | null
+  actionError: string | null
   onApprove: (id: string) => void
   onReject: (id: string) => void
   onBack: () => void
@@ -29,7 +30,7 @@ function DetailRow({ icon: Icon, label, children }: { icon: React.ElementType; l
   )
 }
 
-export default function EventDetail({ event, actionLoading, onApprove, onReject, onBack }: Props) {
+export default function EventDetail({ event, actionLoading, actionError, onApprove, onReject, onBack }: Props) {
   return (
     <div className="flex flex-col h-full">
       <button onClick={onBack} className="flex items-center gap-1.5 text-xs mb-5 lg:hidden" style={{ color: '#7B5590' }}>
@@ -106,6 +107,12 @@ export default function EventDetail({ event, actionLoading, onApprove, onReject,
           </div>
         )}
       </div>
+
+      {actionError && (
+        <p className="text-xs mt-4 px-3 py-2 rounded-lg" style={{ backgroundColor: '#2E0D18', color: '#F87171', border: '1px solid #F8717130' }}>
+          {actionError}
+        </p>
+      )}
 
       <div className="flex gap-3 mt-6 pt-5 border-t" style={{ borderColor: '#7B00D420' }}>
         <button

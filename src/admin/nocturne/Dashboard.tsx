@@ -24,6 +24,7 @@ export default function Dashboard({ token, onLogout }: Props) {
   const [eventsLoading, setEventsLoading]   = useState(false)
   const [eventsError, setEventsError]       = useState<string | null>(null)
   const [actionLoading, setActionLoading]   = useState<string | null>(null)
+  const [actionError, setActionError]       = useState<string | null>(null)
   const [selectedEvent, setSelectedEvent]   = useState<NocturneEvent | null>(null)
 
   const fetchStats = async (signal?: AbortSignal) => {
@@ -53,14 +54,26 @@ export default function Dashboard({ token, onLogout }: Props) {
   }, [tab])
 
   const handleApprove = async (id: string) => {
-    setActionLoading(id)
-    try { await approveEvent(token, id); setEvents(p => p.filter(e => e.id !== id)); setSelectedEvent(p => p?.id === id ? null : p) } catch {}
+    setActionLoading(id); setActionError(null)
+    try {
+      await approveEvent(token, id)
+      setEvents(p => p.filter(e => e.id !== id))
+      setSelectedEvent(p => p?.id === id ? null : p)
+    } catch (e) {
+      setActionError((e as Error).message)
+    }
     setActionLoading(null)
   }
 
   const handleReject = async (id: string) => {
-    setActionLoading(id)
-    try { await rejectEvent(token, id); setEvents(p => p.filter(e => e.id !== id)); setSelectedEvent(p => p?.id === id ? null : p) } catch {}
+    setActionLoading(id); setActionError(null)
+    try {
+      await rejectEvent(token, id)
+      setEvents(p => p.filter(e => e.id !== id))
+      setSelectedEvent(p => p?.id === id ? null : p)
+    } catch (e) {
+      setActionError((e as Error).message)
+    }
     setActionLoading(null)
   }
 
@@ -106,6 +119,7 @@ export default function Dashboard({ token, onLogout }: Props) {
               error={eventsError}
               selectedEvent={selectedEvent}
               actionLoading={actionLoading}
+              actionError={actionError}
               onSelect={setSelectedEvent}
               onDeselect={() => setSelectedEvent(null)}
               onApprove={handleApprove}

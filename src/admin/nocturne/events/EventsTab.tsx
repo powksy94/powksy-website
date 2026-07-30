@@ -8,6 +8,7 @@ interface Props {
   error: string | null
   selectedEvent: NocturneEvent | null
   actionLoading: string | null
+  actionError: string | null
   onSelect: (event: NocturneEvent) => void
   onDeselect: () => void
   onApprove: (id: string) => void
@@ -40,7 +41,7 @@ function EventRow({ event, selected, onSelect }: { event: NocturneEvent; selecte
   )
 }
 
-export default function EventsTab({ events, loading, error, selectedEvent, actionLoading, onSelect, onDeselect, onApprove, onReject, onRetry }: Props) {
+export default function EventsTab({ events, loading, error, selectedEvent, actionLoading, actionError, onSelect, onDeselect, onApprove, onReject, onRetry }: Props) {
   return (
     <div className="flex h-full min-h-0">
 
@@ -67,7 +68,7 @@ export default function EventsTab({ events, loading, error, selectedEvent, actio
       {/* Detail */}
       {selectedEvent ? (
         <div className="flex-1 lg:w-3/5 overflow-y-auto px-8 py-7">
-          <EventDetail event={selectedEvent} actionLoading={actionLoading} onApprove={onApprove} onReject={onReject} onBack={onDeselect} />
+          <EventDetail event={selectedEvent} actionLoading={actionLoading} actionError={actionError} onApprove={onApprove} onReject={onReject} onBack={onDeselect} />
         </div>
       ) : (
         <div className="hidden lg:flex flex-1 items-center justify-center" style={{ color: '#3D0070' }}>
