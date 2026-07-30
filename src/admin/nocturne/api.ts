@@ -97,12 +97,17 @@ export async function getPendingEvents(token: string, signal?: AbortSignal): Pro
   return res.json()
 }
 
+async function throwWithServerDetail(res: Response, fallback: string): Promise<never> {
+  const body = await res.text()
+  throw new Error(`${fallback} (${res.status})${body ? ` — ${body}` : ''}`)
+}
+
 export async function approveEvent(token: string, id: string): Promise<void> {
   const res = await fetch(`${BASE}/api/events/${id}/approve`, {
     method: 'PUT',
     headers: { Authorization: `Bearer ${token}` },
   })
-  if (!res.ok) throw new Error("Échec de l'approbation")
+  if (!res.ok) await throwWithServerDetail(res, "Échec de l'approbation")
 }
 
 export async function rejectEvent(token: string, id: string): Promise<void> {
@@ -110,5 +115,5 @@ export async function rejectEvent(token: string, id: string): Promise<void> {
     method: 'PUT',
     headers: { Authorization: `Bearer ${token}` },
   })
-  if (!res.ok) throw new Error('Échec du refus')
+  if (!res.ok) await throwWithServerDetail(res, 'Échec du refus')
 }
