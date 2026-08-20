@@ -62,6 +62,13 @@ export const fr: PolicyTranslation = {
             Store. Aucun remboursement au prorata de la période en cours n'est effectué, sauf
             obligation légale contraire.
           </li>
+          <li>
+            Les événements payants sont facturés via <strong>Stripe</strong>. Conformément à l'article
+            L221-28 12° du Code de la consommation (prestations de services de loisirs fournies à une
+            date déterminée), le droit de rétractation de 14 jours ne s'applique pas : le billet est
+            non remboursable en cas de changement d'avis, sauf annulation ou modification substantielle
+            de l'événement par l'organisateur.
+          </li>
         </ul>
       ),
     },

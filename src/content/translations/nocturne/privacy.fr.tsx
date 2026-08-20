@@ -29,6 +29,7 @@ export const fr: PolicyTranslation = {
           <li><strong>Géolocalisation</strong> — position GPS utilisée pour le matching par proximité et le filtre de distance.</li>
           <li><strong>Usage</strong> — likes, matchs, messages, élégies (messages d'accroche), visites de profil, compteur de swipes quotidien.</li>
           <li><strong>Abonnement</strong> — plan choisi (Ombre / Nocturne / Abyssal) et période de souscription.</li>
+          <li><strong>Paiements d'événements</strong> — montant et statut de la transaction (paiement traité via Stripe) pour les événements payants.</li>
           <li><strong>Technique</strong> — token de notification push (FCM), refresh token (JWT, valable 1h ; refresh token 30 jours).</li>
         </ul>
       ),
@@ -67,6 +68,8 @@ export const fr: PolicyTranslation = {
             <li><strong>MongoDB Atlas</strong> — base de données.</li>
             <li><strong>Cloudinary</strong> — hébergement des photos de profil.</li>
             <li><strong>Firebase / Google</strong> — notifications push via FCM.</li>
+            <li><strong>RevenueCat</strong> — gestion des abonnements et achats intégrés.</li>
+            <li><strong>Stripe</strong> — traitement des paiements pour les événements payants.</li>
           </ul>
           <p>Ces services sont soumis à leurs propres politiques de confidentialité.</p>
         </>

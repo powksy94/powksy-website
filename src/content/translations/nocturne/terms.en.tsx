@@ -59,6 +59,12 @@ export const en: PolicyTranslation = {
             Subscriptions can be cancelled at any time via the app settings or Google Play.
             No prorated refund is issued for the current billing period, unless required by law.
           </li>
+          <li>
+            Paid events are billed via <strong>Stripe</strong>. Under Article L221-28 12° of the French
+            Consumer Code (leisure services provided on a specific date), the 14-day withdrawal right
+            does not apply: tickets are non-refundable for a simple change of mind, except in case of
+            cancellation or substantial modification of the event by the organizer.
+          </li>
         </ul>
       ),
     },

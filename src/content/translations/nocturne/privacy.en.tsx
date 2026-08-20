@@ -30,6 +30,7 @@ export const en: PolicyTranslation = {
           <li><strong>Location</strong> — GPS position used for proximity matching and distance filtering.</li>
           <li><strong>Activity</strong> — likes, matches, messages, elegies (opening messages), profile visits, daily swipe counter.</li>
           <li><strong>Subscription</strong> — chosen plan (Ombre / Nocturne / Abyssal) and subscription period.</li>
+          <li><strong>Event payments</strong> — transaction amount and status (processed via Stripe) for paid events.</li>
           <li><strong>Technical</strong> — push notification token (FCM), refresh token (JWT, valid 1h; refresh token 30 days).</li>
         </ul>
       ),
@@ -68,6 +69,8 @@ export const en: PolicyTranslation = {
             <li><strong>MongoDB Atlas</strong> — database.</li>
             <li><strong>Cloudinary</strong> — profile photo hosting.</li>
             <li><strong>Firebase / Google</strong> — push notifications via FCM.</li>
+            <li><strong>RevenueCat</strong> — subscription and in-app purchase management.</li>
+            <li><strong>Stripe</strong> — payment processing for paid events.</li>
           </ul>
           <p>These services are subject to their own privacy policies.</p>
         </>
