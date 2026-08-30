@@ -12,6 +12,7 @@ import { nocturneTermsOfServices } from './content/termsOfService.nocturne.tsx'
 import { passwordMobileAppTermsOfServices } from './content/termsOfService.passwordMobileApp.tsx'
 import { dailyFactsDeleteAccountConfigs } from './content/deleteAccount.dailyFacts.tsx'
 import { nocturneDeleteAccountConfigs } from './content/deleteAccount.nocturne.tsx'
+import { nocturneChildSafetyStandardsConfigs } from './content/childSafetyStandards.nocturne.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/nocturne/privacy-policy" element={<LocalizedLegalPage configs={nocturnePrivacyPolicies} />} />
         <Route path="/nocturne/terms-of-service" element={<LocalizedLegalPage configs={nocturneTermsOfServices} />} />
         <Route path="/nocturne/delete-account" element={<LocalizedLegalPage configs={nocturneDeleteAccountConfigs} />} />
+        <Route path="/nocturne/child-safety-standards" element={<LocalizedLegalPage configs={nocturneChildSafetyStandardsConfigs} />} />
         <Route path="/password-mobile-app/terms-of-service" element={<LocalizedLegalPage configs={passwordMobileAppTermsOfServices} />} />
         <Route path="/daily-facts/delete-account" element={<LocalizedLegalPage configs={dailyFactsDeleteAccountConfigs} />} />
         <Route path="/*" element={<App />} />
