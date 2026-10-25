@@ -1,7 +1,7 @@
 import { buildLegalConfigs } from '../components/legal/buildLegalConfigs'
-import { fr } from './translations/passwordApp/privacy.fr'
-import { en } from './translations/passwordApp/privacy.en'
-import { es } from './translations/passwordApp/privacy.es'
+import { fr } from './translations/passwordApp/privacy/fr'
+import { en } from './translations/passwordApp/privacy/en'
+import { es } from './translations/passwordApp/privacy/es'
 
 const base = {
   appName: 'Password Mobile App',
@@ -26,6 +26,11 @@ const sectionDefs = [
   { icon: '📋', key: 'introduction' },
   { icon: '📦', key: 'dataCollected' },
   { icon: '🚫', key: 'noData' },
+  { icon: '📧', key: 'passwordReset' },
+  { icon: '🔑', key: 'sessions' },
+  { icon: '🔔', key: 'notifications' },
+  { icon: '📱', key: 'deviceData' },
+  { icon: '📤', key: 'export' },
   { icon: '🔒', key: 'security' },
   { icon: '🌐', key: 'thirdParty' },
   { icon: '🗄️', key: 'retention' },
