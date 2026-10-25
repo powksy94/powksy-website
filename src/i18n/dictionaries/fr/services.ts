@@ -2,7 +2,7 @@ import type { Dictionary } from '../../types'
 
 export const services: Dictionary['services'] = {
   title: 'Ce que nous faisons',
-  subtitle: 'De l\'idée au lancement — des applications web et mobiles conçues pour performer.',
+  subtitle: 'De l\'idée au lancement : des applications web et mobiles conçues pour performer.',
   web: {
     title: 'Développement Web',
     desc: 'Sites et applications web modernes, rapides et scalables.',

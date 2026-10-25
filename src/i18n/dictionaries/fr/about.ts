@@ -4,7 +4,7 @@ export const about: Dictionary['about'] = {
   titleStart: 'À propos de',
   paragraphs: [
     'Powksy est un studio de développement indépendant spécialisé dans la création d\'applications web et mobiles.',
-    'L\'objectif : concevoir des produits digitaux modernes, performants et accessibles — des apps mobiles publiées sur le Play Store aux sites web complets, chaque projet est pensé pour durer.',
+    'L\'objectif : concevoir des produits digitaux modernes, performants et accessibles. Des apps mobiles publiées sur le Play Store aux sites web complets, chaque projet est pensé pour durer.',
   ],
   stats: {
     projects: 'Projets réalisés',

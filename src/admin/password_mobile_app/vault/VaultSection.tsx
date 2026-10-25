@@ -27,7 +27,7 @@ export default function VaultSection({ token }: Props) {
         const data = await getVault(token, controller.signal)
         if (!cancelled) setItems(data.items)
       } catch {
-        // ignore — abandon silencieux si la requête échoue ou est annulée
+        // ignore: give up silently if the request fails or is aborted
       } finally {
         if (!cancelled) setLoading(false)
       }
@@ -74,7 +74,7 @@ export default function VaultSection({ token }: Props) {
       {!loading && items.length === 0 && !showAdd && (
         <div className="text-center py-14 text-gray-600">
           <Lock size={28} className="mx-auto mb-3 opacity-30" />
-          <p className="text-sm">Vault vide — ajoutez votre premier élément.</p>
+          <p className="text-sm">Vault vide. Ajoutez votre premier élément.</p>
         </div>
       )}
 

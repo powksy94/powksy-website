@@ -19,7 +19,7 @@ export interface Stats {
   likes: number
   matches: number
   messages: number
-  // Champs optionnels — renvoyés si le backend les supporte
+  // Optional fields: returned when the backend supports them
   trends?: {
     users?: StatTrend
     profiles?: StatTrend
@@ -116,7 +116,7 @@ export async function getPendingEvents(token: string, signal?: AbortSignal): Pro
 
 async function throwWithServerDetail(res: Response, fallback: string): Promise<never> {
   const body = await res.text()
-  throw new Error(`${fallback} (${res.status})${body ? ` — ${body}` : ''}`)
+  throw new Error(`${fallback} (${res.status})${body ? ` - ${body}` : ''}`)
 }
 
 export async function approveEvent(token: string, id: string): Promise<void> {

@@ -99,7 +99,7 @@ export default function AuthScreen({ onAuthenticated }: Props) {
             <ShieldCheck className="text-violet-400" size={32} />
           </div>
           <h1 className="text-2xl font-bold text-white">Panel Admin</h1>
-          <p className="text-gray-500 text-sm mt-1">Powksy — accès restreint</p>
+          <p className="text-gray-500 text-sm mt-1">Powksy - accès restreint</p>
         </div>
 
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6">

@@ -46,7 +46,7 @@ export default function VaultEdit({ item, vaultKey, token, onUpdated, onClose }:
           bytes = new Uint8Array(await file.arrayBuffer())
           fileName = file.name
         } else {
-          // Pas de nouveau fichier — re-chiffrer les données existantes telles quelles
+          // No new file: re-encrypt the existing data as is
           bytes = await decryptBytes(vaultKey, item.encryptedData, item.iv)
         }
       }

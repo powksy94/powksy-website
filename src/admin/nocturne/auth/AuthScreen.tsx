@@ -100,7 +100,7 @@ export default function AuthScreen({ onAuthenticated }: Props) {
             <span className="text-white font-bold text-3xl tracking-tight">N</span>
           </div>
           <h1 className="text-2xl font-bold text-white tracking-wide">Nocturne</h1>
-          <p className="text-sm mt-1" style={{ color: '#7B00D4' }}>Panel Admin — accès restreint</p>
+          <p className="text-sm mt-1" style={{ color: '#7B00D4' }}>Panel Admin - accès restreint</p>
         </div>
 
         {/* Card */}
