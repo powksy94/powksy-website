@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { useI18n } from '../i18n/useI18n'
 
 export default function Hero() {
+    const { t } = useI18n()
+
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-gray-900 to-violet-950" />
@@ -14,7 +17,7 @@ export default function Hero() {
                 transition={{ duration: 0.6 }}
                 >
                     <span className="inline-block text-violet-400 text-sm font-medium tracking-widest uppercase mb-6 border border-violet-500/30 px-4 py-1.5 rounded-full">
-                    Applications &amp; Sites Web
+                    {t.hero.badge}
                     </span>
                 </motion.div>
 
@@ -24,9 +27,9 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                    Nous créons des
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400"> produits digitaux</span>
-                    <br />qui comptent
+                    {t.hero.titleStart}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400"> {t.hero.titleHighlight}</span>
+                    <br />{t.hero.titleEnd}
                 </motion.h1>
 
                 <motion.p 
@@ -35,7 +38,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2}}
                 >
-                    Powksy conçoit des applications web modernes et des apps mobiles sur diverses thématiques.
+                    {t.hero.subtitle}
                 </motion.p>
 
                 <motion.div 
@@ -48,13 +51,13 @@ export default function Hero() {
                     href="#portfolio"
                     className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white px-8 py-3.5 rounded-xl font-medium transition-colors"
                     >
-                      Voir nos projets <ArrowRight size={18} />
+                      {t.hero.ctaProjects} <ArrowRight size={18} className="rtl:-scale-x-100" />
                     </a>
                     <a
                     href="#contact"
                     className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white px-8 py-3.5 rounded-xl font-medium transition-colors"
                     >
-                      Démarrer un projet
+                      {t.hero.ctaStart}
                     </a>
 
                 </motion.div>

@@ -2,31 +2,17 @@ import { motion } from 'framer-motion'
 import { Zap, Target, Code2, Smartphone } from 'lucide-react'
 import csharpIcon from '../assets/c-sharp.png'
 import cobolIcon from '../assets/cobol-icon.png'
+import type { ValueId } from '../i18n/types'
+import { useI18n } from '../i18n/useI18n'
 
-const values = [
-  {
-    icon: Code2,
-    title: 'Web sur-mesure',
-    desc: 'Des sites et applications web construits avec les technologies modernes : React, Flask, Django.',
-  },
-  {
-    icon: Smartphone,
-    title: 'Apps mobiles',
-    desc: 'Des applications Flutter multiplateformes, disponibles sur Android.',
-  },
-  {
-    icon: Zap,
-    title: 'Déploiement continu',
-    desc: 'Des applications déployées et maintenues activement, avec des mises à jour régulières.',
-  },
-  {
-    icon: Target,
-    title: 'Orienté résultat',
-    desc: 'Chaque produit est pensé pour répondre à un besoin réel et offrir une expérience fluide.',
-  },
+const values: { id: ValueId; icon: typeof Code2 }[] = [
+  { id: 'web', icon: Code2 },
+  { id: 'mobile', icon: Smartphone },
+  { id: 'deploy', icon: Zap },
+  { id: 'result', icon: Target },
 ]
 
-// slug = nom utilisé par simpleicons.org
+// slug = name used by simpleicons.org
 const row1 = [
   { name: 'Python',      slug: 'python',       color: '#3776AB' },
   { name: 'JavaScript',  slug: 'javascript',   color: '#F7DF1E' },
@@ -96,6 +82,8 @@ function MarqueeRow({ items, reverse = false }: { items: Tech[]; reverse?: boole
 }
 
 export default function About() {
+  const { locale, t } = useI18n()
+
   return (
     <section id="about" className="py-24 bg-gray-950">
       <div className="max-w-6xl mx-auto px-6">
@@ -103,35 +91,37 @@ export default function About() {
         {/* Description + values */}
         <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: locale.dir === 'rtl' ? 20 : -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              À propos de{' '}
+              {t.about.titleStart}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400">
                 Powksy
               </span>
             </h2>
-            <p className="text-gray-400 leading-relaxed mb-4">
-              Powksy est un studio de développement indépendant spécialisé dans la création d&apos;applications web et mobiles.
-            </p>
-            <p className="text-gray-400 leading-relaxed mb-8">
-              L&apos;objectif : concevoir des produits digitaux modernes, performants et accessibles — des apps mobiles publiées sur le Play Store aux sites web complets, chaque projet est pensé pour durer.
-            </p>
+            {t.about.paragraphs.map((text, i) => (
+              <p
+                key={i}
+                className={`text-gray-400 leading-relaxed ${i === t.about.paragraphs.length - 1 ? 'mb-8' : 'mb-4'}`}
+              >
+                {text}
+              </p>
+            ))}
             <div className="flex gap-8">
               <div>
                 <p className="text-3xl font-bold text-white">12+</p>
-                <p className="text-gray-400 text-sm">Projets réalisés</p>
+                <p className="text-gray-400 text-sm">{t.about.stats.projects}</p>
               </div>
               <div>
                 <p className="text-3xl font-bold text-white">3</p>
-                <p className="text-gray-400 text-sm">Apps mobiles publiées</p>
+                <p className="text-gray-400 text-sm">{t.about.stats.apps}</p>
               </div>
               <div>
                 <p className="text-3xl font-bold text-white">20+</p>
-                <p className="text-gray-400 text-sm">Technologies maîtrisées</p>
+                <p className="text-gray-400 text-sm">{t.about.stats.tech}</p>
               </div>
             </div>
           </motion.div>
@@ -139,7 +129,7 @@ export default function About() {
           <div className="grid grid-cols-2 gap-4">
             {values.map((v, i) => (
               <motion.div
-                key={v.title}
+                key={v.id}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-violet-500/50 transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -149,8 +139,8 @@ export default function About() {
                 <div className="w-9 h-9 bg-violet-600/20 rounded-lg flex items-center justify-center mb-4">
                   <v.icon className="text-violet-400" size={18} />
                 </div>
-                <h4 className="text-white font-semibold mb-1 text-sm">{v.title}</h4>
-                <p className="text-gray-400 text-xs leading-relaxed">{v.desc}</p>
+                <h4 className="text-white font-semibold mb-1 text-sm">{t.about.values[v.id].title}</h4>
+                <p className="text-gray-400 text-xs leading-relaxed">{t.about.values[v.id].desc}</p>
               </motion.div>
             ))}
           </div>
@@ -163,8 +153,9 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">Technologies maîtrisées</h3>
-          <div className="flex flex-col gap-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">{t.about.techTitle}</h3>
+          {/* Forced to ltr: the marquee animation relies on left-to-right layout */}
+          <div dir="ltr" className="flex flex-col gap-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
             <MarqueeRow items={row1} />
             <MarqueeRow items={row2} reverse />
           </div>

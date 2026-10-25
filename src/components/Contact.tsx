@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Mail, MessageCircle, ArrowUpRight } from 'lucide-react'
+import { useI18n } from '../i18n/useI18n'
 
 type IconProps = { className?: string }
 
@@ -48,6 +49,8 @@ const socials: { icon: (props: IconProps) => React.ReactElement; label: string; 
 ]
 
 export default function Contact() {
+  const { t } = useI18n()
+
   return (
     <section id="contact" className="py-24 bg-gray-900">
       <div className="max-w-4xl mx-auto px-6">
@@ -59,10 +62,9 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Contact</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.contact.title}</h2>
           <p className="text-gray-400 max-w-lg mx-auto">
-            Une question sur un produit, une collaboration ou juste envie d&apos;échanger ?
-            Retrouvez Powksy sur ces plateformes.
+            {t.contact.subtitle}
           </p>
         </motion.div>
 
@@ -83,10 +85,10 @@ export default function Contact() {
                 <s.icon className="text-gray-300" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-gray-500 mb-0.5">{s.label}</p>
+                <p className="text-xs text-gray-500 mb-0.5">{s.label === 'Email' ? t.contact.emailLabel : s.label}</p>
                 <p className="text-white font-medium text-sm truncate">{s.handle}</p>
               </div>
-              <ArrowUpRight size={16} className="text-gray-600 group-hover:text-white transition-colors shrink-0" />
+              <ArrowUpRight size={16} className="text-gray-600 group-hover:text-white transition-colors shrink-0 rtl:-scale-x-100" />
             </motion.a>
           ))}
         </div>
@@ -99,7 +101,7 @@ export default function Contact() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <p className="text-gray-500 text-sm">
-            Préférez l&apos;email ?{' '}
+            {t.contact.preferEmail}{' '}
             <a
               href="mailto:matthieuuzan@gmail.com"
               className="text-violet-400 hover:text-violet-300 transition-colors underline underline-offset-4"

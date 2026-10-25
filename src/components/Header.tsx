@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import powksyLogo from '../assets/Powksy-logo.png'
-
-const links = [
-  { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'À propos', href: '#about' },
-  { label: 'Contact', href: '#contact' },
-]
+import LanguageSwitcher from './LanguageSwitcher'
+import { useI18n } from '../i18n/useI18n'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const { t } = useI18n()
+
+  const links = [
+    { label: t.header.nav.services, href: '#services' },
+    { label: t.header.nav.portfolio, href: '#portfolio' },
+    { label: t.header.nav.about, href: '#about' },
+    { label: t.header.nav.contact, href: '#contact' },
+  ]
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-md border-b border-white/10">
@@ -29,11 +32,14 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <LanguageSwitcher />
         </nav>
 
         <button
           className="md:hidden text-gray-400 hover:text-white"
           onClick={() => setOpen(!open)}
+          aria-label={t.header.menu}
+          aria-expanded={open}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -51,6 +57,9 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <div className="border-t border-white/10 pt-4">
+            <LanguageSwitcher variant="list" onSelect={() => setOpen(false)} />
+          </div>
         </div>
       )}
     </header>

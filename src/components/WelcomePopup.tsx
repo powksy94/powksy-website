@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from 'framer-motion'
 import powksyLogoSup  from '../assets/Powksy-logo-sup.png'
+import { useI18n } from '../i18n/useI18n'
 
 export default function WelcomePopup({ onDone }: { onDone?: () => void }) {
+    const { locale, t } = useI18n()
+    // Splitting into letters breaks joined scripts (Arabic...), so RTL words animate as a whole
+    const parts = locale.dir === 'rtl' ? [t.welcome.word] : t.welcome.word.split('')
     const seen = localStorage.getItem('powksy_welcomed')
     const [visible, setVisible] = useState(!seen)
 
@@ -38,7 +42,7 @@ export default function WelcomePopup({ onDone }: { onDone?: () => void }) {
                         />
 
                         <div className="flex">
-                            {'Bienvenue'.split('').map((letter, i) => (
+                            {parts.map((letter, i) => (
                                 <motion.span
                                     key={i}
                                     className="text-4xl font-bold text-white tracking-widest"

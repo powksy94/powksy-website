@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
+import I18nProvider from './i18n/I18nProvider.tsx'
 import AdminApp from './admin/password_mobile_app/AdminApp.tsx'
 import NocturneAdminApp from './admin/nocturne/NocturneAdminApp.tsx'
 import LocalizedLegalPage from './components/legal/LocalizedLegalPage.tsx'
@@ -27,7 +28,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/nocturne/child-safety-standards" element={<LocalizedLegalPage configs={nocturneChildSafetyStandardsConfigs} />} />
         <Route path="/password-mobile-app/terms-of-service" element={<LocalizedLegalPage configs={passwordMobileAppTermsOfServices} />} />
         <Route path="/daily-facts/delete-account" element={<LocalizedLegalPage configs={dailyFactsDeleteAccountConfigs} />} />
-        <Route path="/*" element={<App />} />
+        {/* The locale comes from the first path segment (/en, /es, /pt-pt, /pt-br), French on / */}
+        <Route path="/*" element={<I18nProvider><App /></I18nProvider>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

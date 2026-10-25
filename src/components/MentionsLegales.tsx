@@ -1,73 +1,89 @@
+import type { ReactNode } from 'react'
 import { X } from 'lucide-react'
 import { LEGAL_ADDRESS, LEGAL_SIRET } from '../legal-info'
+import { useI18n } from '../i18n/useI18n'
+import LanguageSwitcher from './LanguageSwitcher'
 
 interface Props {
   onClose: () => void
 }
 
+const EMAIL = 'matthieuuzan@gmail.com'
+
+function Section({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section>
+      <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
+        {title}
+      </h2>
+      {children}
+    </section>
+  )
+}
+
+function EmailLink() {
+  return (
+    <a href={`mailto:${EMAIL}`} className="text-white hover:text-gray-300 transition-colors">
+      {EMAIL}
+    </a>
+  )
+}
+
 export default function MentionsLegales({ onClose }: Props) {
+  const { locale, t } = useI18n()
+  const l = t.legalNotice
+
   return (
     <div className="min-h-screen bg-gray-950 text-white px-6 py-12">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
-          <h1 className="text-3xl font-bold tracking-tight">Mentions légales</h1>
-          <button
-            onClick={() => { onClose(); window.scrollTo(0, 0) }}
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
-          >
-            <X size={18} />
-            Retour
-          </button>
+          <h1 className="text-3xl font-bold tracking-tight">{l.title}</h1>
+          <div className="flex items-center gap-6">
+            <LanguageSwitcher />
+            <button
+              onClick={() => { onClose(); window.scrollTo(0, 0) }}
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
+            >
+              <X size={18} />
+              {l.back}
+            </button>
+          </div>
         </div>
 
         <div className="space-y-10 text-gray-300 text-sm leading-relaxed">
 
-          {/* 1. Éditeur */}
-          <section>
-            <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
-              1. Éditeur du site
-            </h2>
-            <p>Le site <strong className="text-white">powksy.com</strong> est édité par :</p>
+          <Section title={l.publisher.title}>
+            <p>{l.publisher.intro}</p>
             <ul className="mt-3 space-y-1">
-              <li><span className="text-gray-500">Nom :</span> <span className="text-white font-medium">Matthieu Uzan</span></li>
-              <li><span className="text-gray-500">Statut :</span> Auto-entrepreneur / Micro-entrepreneur</li>
+              <li><span className="text-gray-500">{l.publisher.name}</span> <span className="text-white font-medium">Matthieu Uzan</span></li>
+              <li><span className="text-gray-500">{l.publisher.status}</span> {l.publisher.statusValue}</li>
               <li>
-                <span className="text-gray-500">Adresse :</span>{' '}
+                <span className="text-gray-500">{l.publisher.address}</span>{' '}
                 <span className="text-white">{LEGAL_ADDRESS}</span>
               </li>
               <li>
-                <span className="text-gray-500">SIRET :</span>{' '}
+                <span className="text-gray-500">{l.publisher.siret}</span>{' '}
                 <span className="text-white">{LEGAL_SIRET}</span>
               </li>
               <li>
-                <span className="text-gray-500">Email :</span>{' '}
-                <a href="mailto:matthieuuzan@gmail.com" className="text-white hover:text-gray-300 transition-colors">
-                  matthieuuzan@gmail.com
-                </a>
+                <span className="text-gray-500">{l.publisher.email}</span>{' '}
+                <EmailLink />
               </li>
             </ul>
-          </section>
+          </Section>
 
-          {/* 2. Directeur de publication */}
-          <section>
-            <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
-              2. Directeur de la publication
-            </h2>
+          <Section title={l.director.title}>
             <p>Matthieu Uzan</p>
-          </section>
+          </Section>
 
-          {/* 3. Hébergeur */}
-          <section>
-            <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
-              3. Hébergement
-            </h2>
-            <p>Le site est hébergé par :</p>
+          <Section title={l.hosting.title}>
+            <p>{l.hosting.intro}</p>
             <ul className="mt-3 space-y-1">
-              <li><span className="text-gray-500">Société :</span> <span className="text-white font-medium">Railway, Inc.</span></li>
-              <li><span className="text-gray-500">Adresse :</span> 340 Pine Street, Suite 800, San Francisco, CA 94104, États-Unis</li>
+              <li><span className="text-gray-500">{l.hosting.company}</span> <span className="text-white font-medium">Railway, Inc.</span></li>
+              <li><span className="text-gray-500">{l.hosting.address}</span> {l.hosting.addressValue}</li>
               <li>
-                <span className="text-gray-500">Site web :</span>{' '}
+                <span className="text-gray-500">{l.hosting.website}</span>{' '}
                 <a
                   href="https://railway.app"
                   target="_blank"
@@ -78,91 +94,39 @@ export default function MentionsLegales({ onClose }: Props) {
                 </a>
               </li>
             </ul>
-          </section>
+          </Section>
 
-          {/* 4. Propriété intellectuelle */}
-          <section>
-            <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
-              4. Propriété intellectuelle
-            </h2>
-            <p>
-              L'ensemble du contenu de ce site (textes, images, logos, code source, visuels) est la propriété exclusive
-              de <strong className="text-white">Powksy / Matthieu Uzan</strong>, sauf mention contraire.
-            </p>
+          <Section title={l.ip.title}>
+            {l.ip.paragraphs.map((text, i) => (
+              <p key={i} className={i > 0 ? 'mt-3' : undefined}>{text}</p>
+            ))}
+          </Section>
+
+          <Section title={l.data.title}>
+            <p>{l.data.noCollection}</p>
             <p className="mt-3">
-              Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments
-              du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable de
-              Matthieu Uzan.
+              {l.data.rights}{' '}
+              <EmailLink />
             </p>
-            <p className="mt-3">
-              Les projets présentés dans le portfolio restent la propriété de leurs auteurs respectifs et sont référencés
-              à titre d'illustration des compétences du studio.
-            </p>
-          </section>
+          </Section>
 
-          {/* 5. Données personnelles */}
-          <section>
-            <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
-              5. Données personnelles
-            </h2>
-            <p>
-              Ce site ne collecte aucune donnée personnelle directement via des formulaires. Les interactions sont
-              limitées à des liens vers des services tiers (GitHub, LinkedIn, Discord) soumis à leurs propres politiques
-              de confidentialité.
-            </p>
-            <p className="mt-3">
-              Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la
-              loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'opposition et de
-              suppression des données vous concernant. Pour exercer ce droit, contactez :{' '}
-              <a href="mailto:matthieuuzan@gmail.com" className="text-white hover:text-gray-300 transition-colors">
-                matthieuuzan@gmail.com
-              </a>
-            </p>
-          </section>
+          <Section title={l.cookies.title}>
+            <p>{l.cookies.text}</p>
+          </Section>
 
-          {/* 6. Cookies */}
-          <section>
-            <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
-              6. Cookies
-            </h2>
-            <p>
-              Ce site n'utilise pas de cookies à des fins de suivi, de publicité ou d'analyse comportementale.
-              Un cookie technique de session (<code className="bg-white/10 px-1 rounded text-xs">powksy_welcomed</code>)
-              est utilisé uniquement pour mémoriser l'affichage de l'écran d'accueil pendant votre visite.
-              Il ne collecte aucune donnée personnelle et n'est pas transmis à des tiers.
-            </p>
-          </section>
+          <Section title={l.liability.title}>
+            {l.liability.paragraphs.map((text, i) => (
+              <p key={i} className={i > 0 ? 'mt-3' : undefined}>{text}</p>
+            ))}
+          </Section>
 
-          {/* 7. Limitation de responsabilité */}
-          <section>
-            <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
-              7. Limitation de responsabilité
-            </h2>
-            <p>
-              Powksy s'efforce de fournir des informations exactes et à jour. Cependant, l'exactitude, la complétude
-              ou l'actualité des informations ne peuvent être garanties. L'utilisation des informations et contenus du
-              site se fait sous la responsabilité de l'utilisateur.
-            </p>
-            <p className="mt-3">
-              Powksy ne saurait être tenu responsable des dommages directs ou indirects résultant de l'accès au site
-              ou de l'utilisation de son contenu, ni des liens vers des sites tiers dont il ne contrôle pas le contenu.
-            </p>
-          </section>
-
-          {/* 8. Droit applicable */}
-          <section>
-            <h2 className="text-lg font-semibold text-white mb-3 border-b border-white/10 pb-2">
-              8. Droit applicable
-            </h2>
-            <p>
-              Le présent site et ses mentions légales sont soumis au droit français. En cas de litige, et à défaut
-              d'accord amiable, les tribunaux français seront seuls compétents.
-            </p>
-          </section>
+          <Section title={l.law.title}>
+            <p>{l.law.text}</p>
+          </Section>
 
           {/* Footer note */}
           <p className="text-gray-600 text-xs pt-4 border-t border-white/5">
-            Dernière mise à jour : {new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {l.updated} {new Date().toLocaleDateString(locale.code, { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
         </div>
       </div>
