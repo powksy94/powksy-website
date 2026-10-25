@@ -16,7 +16,7 @@ export const objective: SectionTranslation = {
         <li><strong>Generador</strong> de contraseñas personalizable.</li>
         <li><strong>Análisis de salud</strong>: detección de contraseñas débiles, reutilizadas o comprometidas.</li>
         <li><strong>Recordatorios de seguridad</strong> por notificación para las contraseñas débiles.</li>
-        <li><strong>Exportación / importación</strong> de la bóveda (exportación protegida con biometría).</li>
+        <li><strong>Exportación / importación</strong> de la bóveda (exportación cifrada .enc o JSON, importación CSV desde otros gestores).</li>
       </ul>
     </>
   ),

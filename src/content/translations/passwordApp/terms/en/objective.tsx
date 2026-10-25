@@ -15,7 +15,7 @@ export const objective: SectionTranslation = {
         <li>Customizable <strong>password generator</strong>.</li>
         <li><strong>Health analysis</strong>: detects weak, reused, or compromised passwords.</li>
         <li><strong>Security reminders</strong> by notification for weak passwords.</li>
-        <li><strong>Export / import</strong> (biometric-protected export).</li>
+        <li><strong>Export / import</strong> (encrypted .enc or JSON export, CSV import from other password managers).</li>
       </ul>
     </>
   ),

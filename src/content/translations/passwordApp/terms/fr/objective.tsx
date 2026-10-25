@@ -16,7 +16,7 @@ export const objective: SectionTranslation = {
         <li><strong>Générateur</strong> de mots de passe personnalisable.</li>
         <li><strong>Analyse de santé</strong> : détection des mots de passe faibles, réutilisés ou compromis.</li>
         <li><strong>Rappels de sécurité</strong> par notification pour les mots de passe faibles.</li>
-        <li><strong>Export / import</strong> du coffre (export protégé par biométrie).</li>
+        <li><strong>Export / import</strong> du coffre (export chiffré .enc ou JSON, import CSV depuis d'autres gestionnaires).</li>
       </ul>
     </>
   ),

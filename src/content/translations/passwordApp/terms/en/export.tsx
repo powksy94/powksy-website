@@ -6,9 +6,10 @@ export const vaultExport: SectionTranslation = {
   content: (
     <>
       <p>
-        The export is generated on your device, after biometric authentication, and saved to
-        the location you choose (a folder on your phone or sharing to another app). It
-        includes website addresses (URLs).
+        The export is generated on your device and saved to the location you choose (a folder
+        on your phone or sharing to another app). Three formats are available: biometric
+        encrypted (.enc), portable encrypted (.enc) and plain-text JSON. It includes website
+        addresses (URLs).
       </p>
       <Highlight>
         The JSON export contains your passwords <strong>in plaintext</strong>. You are solely
@@ -16,7 +17,8 @@ export const vaultExport: SectionTranslation = {
         sharing, deletion or loss once they have left the app.
       </Highlight>
       <p>
-        Import allows you to restore a vault from a compatible export file.
+        Import allows you to restore a vault from a compatible export file, or to import a CSV
+        file from another password manager.
         Always verify the source of the file before importing.
       </p>
     </>

@@ -7,6 +7,7 @@ export const vaultExport: SectionTranslation = {
     <>
       <ul>
         <li>La exportación se genera <strong>en su dispositivo</strong>. Usted elige su destino (carpeta del teléfono, por ejemplo Descargas, o compartir con otra aplicación).</li>
+        <li>Se ofrecen tres formatos: <strong>cifrado biométrico</strong> (.enc), <strong>cifrado portátil</strong> (.enc) y <strong>JSON en texto plano</strong>.</li>
         <li>La exportación incluye las direcciones de los sitios (URL).</li>
       </ul>
       <Highlight>
