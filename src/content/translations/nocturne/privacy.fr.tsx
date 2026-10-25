@@ -2,7 +2,7 @@ import { Highlight, BadgeNo, BadgeYes } from '../../../components/legal/PrivacyP
 import type { PolicyTranslation } from '../../../components/legal/privacyPolicyTypes'
 
 export const fr: PolicyTranslation = {
-  updatedLabel: 'juin 2026',
+  updatedLabel: 'octobre 2026',
   sections: {
     introduction: {
       title: 'Introduction',
@@ -24,14 +24,50 @@ export const fr: PolicyTranslation = {
       title: 'Données collectées',
       content: (
         <ul>
-          <li><strong>Compte</strong> — email et mot de passe (stocké sous forme hachée bcrypt sur nos serveurs).</li>
-          <li><strong>Profil</strong> — pseudo, bio, date de naissance/âge, genre, préférences de genre, pronoms, photos, préférences musicales/esthétiques, liens réseaux sociaux, événements suivis.</li>
-          <li><strong>Géolocalisation</strong> — position GPS utilisée pour le matching par proximité et le filtre de distance.</li>
-          <li><strong>Usage</strong> — likes, matchs, messages, élégies (messages d'accroche), visites de profil, compteur de swipes quotidien.</li>
-          <li><strong>Abonnement</strong> — plan choisi (Ombre / Nocturne / Abyssal) et période de souscription.</li>
-          <li><strong>Paiements d'événements</strong> — montant et statut de la transaction (paiement traité via Stripe) pour les événements payants.</li>
-          <li><strong>Technique</strong> — token de notification push (FCM), refresh token (JWT, valable 1h ; refresh token 30 jours).</li>
+          <li><strong>Compte</strong> :email et mot de passe (stocké sous forme hachée bcrypt sur nos serveurs).</li>
+          <li><strong>Profil</strong> :pseudo, bio, date de naissance/âge, genre, préférences de genre, pronoms, photos, préférences musicales/esthétiques, liens réseaux sociaux, événements suivis.</li>
+          <li><strong>Géolocalisation</strong> :position GPS utilisée pour le matching par proximité et le filtre de distance.</li>
+          <li><strong>Usage</strong> :likes, matchs, messages, élégies (messages d'accroche), visites de profil, compteur de swipes quotidien.</li>
+          <li><strong>Abonnement</strong> :plan choisi (Ombre / Nocturne / Abyssal) et période de souscription.</li>
+          <li><strong>Paiements d'événements</strong> :montant et statut de la transaction (paiement traité via Stripe) pour les événements payants.</li>
+          <li><strong>Technique</strong> :token de notification push (FCM), refresh token (JWT, valable 1h ; refresh token 30 jours).</li>
+          <li><strong>Codes de vérification</strong> : codes à 6 chiffres à usage unique envoyés par email (vérification de l'adresse à l'inscription, réinitialisation du mot de passe).</li>
+          <li><strong>Intégrité de l'appareil</strong> : jeton Google Play Integrity transmis lors de l'inscription (voir « Prévention de la fraude »).</li>
         </ul>
+      ),
+    },
+    emailVerification: {
+      title: "Vérification de l'email et réinitialisation du mot de passe",
+      content: (
+        <>
+          <ul>
+            <li>À l'inscription, un <strong>code à 6 chiffres</strong> est envoyé à votre adresse email pour confirmer que vous en êtes bien le titulaire. Cette vérification est <strong>obligatoire</strong> avant l'activation complète du compte.</li>
+            <li>La fonction <em>Mot de passe oublié</em> envoie également un code à 6 chiffres à usage unique pour redéfinir votre mot de passe.</li>
+            <li><strong>Données traitées</strong> : votre adresse email et le contenu de l'email (le code à usage unique). Aucune nouvelle catégorie de données n'est collectée : l'email servait déjà d'identifiant de compte.</li>
+          </ul>
+          <p>
+            Les emails sont envoyés par notre sous-traitant <strong>Resend</strong>, société basée aux
+            États-Unis (voir « Services tiers »).
+          </p>
+        </>
+      ),
+    },
+    fraudPrevention: {
+      title: 'Prévention de la fraude (Google Play Integrity)',
+      content: (
+        <>
+          <p>
+            L'inscription est protégée par <strong>Google Play Integrity</strong>, via Firebase App
+            Check. L'application transmet un jeton d'intégrité qui atteste qu'elle s'exécute sur un
+            appareil Android authentique, non modifié, et qu'elle a été installée depuis une source
+            de confiance.
+          </p>
+          <ul>
+            <li><strong>Données traitées</strong> : signaux techniques de l'appareil (intégrité du système, signature et origine d'installation de l'application), vérifiés par Google.</li>
+            <li><strong>Finalité</strong> : prévention de la fraude, des faux comptes et des inscriptions automatisées.</li>
+            <li>Ces signaux ne servent pas à vous identifier personnellement ni à des fins publicitaires.</li>
+          </ul>
+        </>
       ),
     },
     noData: {
@@ -40,8 +76,7 @@ export const fr: PolicyTranslation = {
         <ul>
           <li>Historique de navigation hors application <BadgeNo>non collecté</BadgeNo>.</li>
           <li>
-            Données biométriques <BadgeNo>non collectées</BadgeNo>
-            — sauf déverrouillage local par empreinte/Face ID via <code>local_auth</code>, qui ne quitte jamais votre appareil.
+            Données biométriques <BadgeNo>non collectées</BadgeNo>, sauf déverrouillage local par empreinte/Face ID via <code>local_auth</code>, qui ne quitte jamais votre appareil.
           </li>
           <li>Contacts du téléphone <BadgeNo>non collectés</BadgeNo>.</li>
         </ul>
@@ -64,14 +99,21 @@ export const fr: PolicyTranslation = {
         <>
           <p>L'application utilise les services suivants :</p>
           <ul>
-            <li><strong>Railway</strong> — hébergement du serveur backend.</li>
-            <li><strong>MongoDB Atlas</strong> — base de données.</li>
-            <li><strong>Cloudinary</strong> — hébergement des photos de profil.</li>
-            <li><strong>Firebase / Google</strong> — notifications push via FCM.</li>
-            <li><strong>RevenueCat</strong> — gestion des abonnements et achats intégrés.</li>
-            <li><strong>Stripe</strong> — traitement des paiements pour les événements payants.</li>
+            <li><strong>Railway</strong> :hébergement du serveur backend.</li>
+            <li><strong>MongoDB Atlas</strong> :base de données.</li>
+            <li><strong>Cloudinary</strong> :hébergement des photos de profil.</li>
+            <li><strong>Firebase / Google</strong> :notifications push via FCM, et vérification de l'intégrité de l'appareil à l'inscription via App Check / Play Integrity (<a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">politique de confidentialité</a>).</li>
+            <li><strong>RevenueCat</strong> :gestion des abonnements et achats intégrés.</li>
+            <li><strong>Stripe</strong> :traitement des paiements pour les événements payants.</li>
+            <li><strong>Resend</strong> :envoi des emails transactionnels (codes de vérification et de réinitialisation) (<a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">politique de confidentialité</a>, <a href="https://resend.com/legal/dpa" target="_blank" rel="noopener noreferrer">DPA</a>).</li>
           </ul>
           <p>Ces services sont soumis à leurs propres politiques de confidentialité.</p>
+          <p>
+            Resend est une société basée aux États-Unis. Les transferts de données hors de l'Union
+            européenne sont encadrés par son accord de traitement des données (DPA), qui repose sur
+            les clauses contractuelles types de la Commission européenne, et par sa certification
+            au Data Privacy Framework UE-États-Unis.
+          </p>
         </>
       ),
     },
@@ -92,10 +134,10 @@ export const fr: PolicyTranslation = {
         <>
           <p>Conformément au Règlement Général sur la Protection des Données (RGPD) :</p>
           <ul>
-            <li><BadgeYes>Accès</BadgeYes> — vous pouvez demander l'accès à l'ensemble de vos données.</li>
-            <li><BadgeYes>Rectification</BadgeYes> — vous pouvez modifier vos données à tout moment depuis l'application.</li>
-            <li><BadgeYes>Suppression</BadgeYes> — suppression complète du compte et des données via l'application.</li>
-            <li><BadgeYes>Portabilité</BadgeYes> — export de vos données sur simple demande.</li>
+            <li><BadgeYes>Accès</BadgeYes> :vous pouvez demander l'accès à l'ensemble de vos données.</li>
+            <li><BadgeYes>Rectification</BadgeYes> :vous pouvez modifier vos données à tout moment depuis l'application.</li>
+            <li><BadgeYes>Suppression</BadgeYes> :suppression complète du compte et des données via l'application.</li>
+            <li><BadgeYes>Portabilité</BadgeYes> :export de vos données sur simple demande.</li>
           </ul>
         </>
       ),

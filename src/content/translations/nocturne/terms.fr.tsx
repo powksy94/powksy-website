@@ -3,7 +3,7 @@ import type { PolicyTranslation } from '../../../components/legal/privacyPolicyT
 
 export const fr: PolicyTranslation = {
   docLabel: "Conditions d'utilisation",
-  updatedLabel: 'juin 2026',
+  updatedLabel: 'octobre 2026',
   sections: {
     objective: {
       title: 'Objet du service',
@@ -27,6 +27,18 @@ export const fr: PolicyTranslation = {
           <li>L'utilisateur doit avoir <strong>18 ans révolus</strong> pour créer un compte.</li>
           <li>Un compte représente une seule personne réelle : les informations fournies doivent être exactes, sans usurpation d'identité ni faux profil.</li>
           <li>Un seul compte est autorisé par personne.</li>
+          <li>L'adresse email doit être <strong>vérifiée</strong> à l'aide du code à 6 chiffres envoyé lors de l'inscription. Tant qu'elle ne l'est pas, le compte peut rester incomplet ou inactif.</li>
+          <li>Vous devez conserver l'accès à l'adresse email de votre compte : elle sert aussi à réinitialiser votre mot de passe.</li>
+        </ul>
+      ),
+    },
+    fraud: {
+      title: 'Comptes automatisés et fraude',
+      content: (
+        <ul>
+          <li>La création de comptes de manière automatisée ou frauduleuse est interdite (robots, scripts, inscriptions en masse, appareils ou applications modifiés).</li>
+          <li>L'inscription vérifie l'intégrité de l'appareil via <strong>Google Play Integrity</strong>. Une inscription peut être refusée si cette vérification échoue, par exemple sur un appareil modifié ou avec une application qui ne provient pas d'une source de confiance.</li>
+          <li>Tout usage abusif des fonctions d'inscription ou de réinitialisation (demandes répétées, tentatives sur les comptes d'autres personnes) peut entraîner des limitations techniques et la suspension du compte concerné.</li>
         </ul>
       ),
     },

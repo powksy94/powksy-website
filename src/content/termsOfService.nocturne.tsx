@@ -24,6 +24,7 @@ const base = {
 const sectionDefs = [
   { icon: '📋', key: 'objective' },
   { icon: '✅', key: 'registration' },
+  { icon: '🤖', key: 'fraud' },
   { icon: '🚫', key: 'prohibitions' },
   { icon: '🛡️', key: 'reporting' },
   { icon: '💳', key: 'subscriptions' },

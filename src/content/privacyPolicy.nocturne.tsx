@@ -25,6 +25,8 @@ const sectionDefs = [
   { icon: '📋', key: 'introduction' },
   { icon: '📦', key: 'dataCollected' },
   { icon: '🚫', key: 'noData' },
+  { icon: '📧', key: 'emailVerification' },
+  { icon: '🛂', key: 'fraudPrevention' },
   { icon: '🔒', key: 'security' },
   { icon: '🌐', key: 'thirdParty' },
   { icon: '🗄️', key: 'retention' },

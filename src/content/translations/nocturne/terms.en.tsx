@@ -3,7 +3,7 @@ import type { PolicyTranslation } from '../../../components/legal/privacyPolicyT
 
 export const en: PolicyTranslation = {
   docLabel: 'Terms of Service',
-  updatedLabel: 'June 2026',
+  updatedLabel: 'October 2026',
   sections: {
     objective: {
       title: 'About the service',
@@ -24,8 +24,20 @@ export const en: PolicyTranslation = {
       content: (
         <ul>
           <li>Users must be at least <strong>18 years old</strong> to create an account.</li>
-          <li>One account per real person: information provided must be accurate — no impersonation or fake profiles.</li>
+          <li>One account per real person: information provided must be accurate, with no impersonation or fake profiles.</li>
           <li>Only one account is allowed per person.</li>
+          <li>Your email address must be <strong>verified</strong> with the 6-digit code sent at sign-up. Until it is, the account may remain incomplete or inactive.</li>
+          <li>You must keep access to your account's email address: it is also used to reset your password.</li>
+        </ul>
+      ),
+    },
+    fraud: {
+      title: 'Automated accounts and fraud',
+      content: (
+        <ul>
+          <li>Creating accounts in an automated or fraudulent way is prohibited (bots, scripts, bulk sign-ups, modified devices or apps).</li>
+          <li>Sign-up checks device integrity via <strong>Google Play Integrity</strong>. A sign-up may be refused if this check fails, for example on a modified device or with an app that was not installed from a trusted source.</li>
+          <li>Any abuse of the sign-up or password reset features (repeated requests, attempts on other people's accounts) may lead to technical limits and suspension of the account concerned.</li>
         </ul>
       ),
     },

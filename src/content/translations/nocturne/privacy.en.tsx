@@ -3,7 +3,7 @@ import type { PolicyTranslation } from '../../../components/legal/privacyPolicyT
 
 export const en: PolicyTranslation = {
   docLabel: 'Privacy Policy',
-  updatedLabel: 'June 2026',
+  updatedLabel: 'October 2026',
   sections: {
     introduction: {
       title: 'Introduction',
@@ -25,14 +25,49 @@ export const en: PolicyTranslation = {
       title: 'Data collected',
       content: (
         <ul>
-          <li><strong>Account</strong> — email and password (stored as a bcrypt hash on our servers).</li>
-          <li><strong>Profile</strong> — username, bio, date of birth/age, gender, gender preferences, pronouns, photos, music/aesthetic preferences, social media links, followed events.</li>
-          <li><strong>Location</strong> — GPS position used for proximity matching and distance filtering.</li>
-          <li><strong>Activity</strong> — likes, matches, messages, elegies (opening messages), profile visits, daily swipe counter.</li>
-          <li><strong>Subscription</strong> — chosen plan (Ombre / Nocturne / Abyssal) and subscription period.</li>
-          <li><strong>Event payments</strong> — transaction amount and status (processed via Stripe) for paid events.</li>
-          <li><strong>Technical</strong> — push notification token (FCM), refresh token (JWT, valid 1h; refresh token 30 days).</li>
+          <li><strong>Account</strong>:email and password (stored as a bcrypt hash on our servers).</li>
+          <li><strong>Profile</strong>:username, bio, date of birth/age, gender, gender preferences, pronouns, photos, music/aesthetic preferences, social media links, followed events.</li>
+          <li><strong>Location</strong>:GPS position used for proximity matching and distance filtering.</li>
+          <li><strong>Activity</strong>:likes, matches, messages, elegies (opening messages), profile visits, daily swipe counter.</li>
+          <li><strong>Subscription</strong>:chosen plan (Ombre / Nocturne / Abyssal) and subscription period.</li>
+          <li><strong>Event payments</strong>:transaction amount and status (processed via Stripe) for paid events.</li>
+          <li><strong>Technical</strong>:push notification token (FCM), refresh token (JWT, valid 1h; refresh token 30 days).</li>
+          <li><strong>Verification codes</strong>: single-use 6-digit codes sent by email (email verification at sign-up, password reset).</li>
+          <li><strong>Device integrity</strong>: Google Play Integrity token sent at sign-up (see "Fraud prevention").</li>
         </ul>
+      ),
+    },
+    emailVerification: {
+      title: 'Email verification and password reset',
+      content: (
+        <>
+          <ul>
+            <li>At sign-up, a <strong>6-digit code</strong> is sent to your email address to confirm that you own it. This verification is <strong>mandatory</strong> before your account is fully activated.</li>
+            <li>The <em>Forgot password</em> feature also sends a single-use 6-digit code to set a new password.</li>
+            <li><strong>Data processed</strong>: your email address and the content of the email (the single-use code). No new category of data is collected: the email was already your account identifier.</li>
+          </ul>
+          <p>
+            Emails are sent by our processor <strong>Resend</strong>, a company based in the United
+            States (see "Third-party services").
+          </p>
+        </>
+      ),
+    },
+    fraudPrevention: {
+      title: 'Fraud prevention (Google Play Integrity)',
+      content: (
+        <>
+          <p>
+            Sign-up is protected by <strong>Google Play Integrity</strong>, through Firebase App
+            Check. The app sends an integrity token proving that it runs on a genuine, unmodified
+            Android device and was installed from a trusted source.
+          </p>
+          <ul>
+            <li><strong>Data processed</strong>: technical device signals (system integrity, app signature and install source), verified by Google.</li>
+            <li><strong>Purpose</strong>: preventing fraud, fake accounts and automated sign-ups.</li>
+            <li>These signals are not used to identify you personally or for advertising.</li>
+          </ul>
+        </>
       ),
     },
     noData: {
@@ -41,8 +76,7 @@ export const en: PolicyTranslation = {
         <ul>
           <li>Browsing history outside the app <BadgeNo>not collected</BadgeNo>.</li>
           <li>
-            Biometric data <BadgeNo>not collected</BadgeNo>
-            — except local unlock via fingerprint/Face ID through <code>local_auth</code>, which never leaves your device.
+            Biometric data <BadgeNo>not collected</BadgeNo>, except local unlock via fingerprint/Face ID through <code>local_auth</code>, which never leaves your device.
           </li>
           <li>Phone contacts <BadgeNo>not collected</BadgeNo>.</li>
         </ul>
@@ -65,14 +99,21 @@ export const en: PolicyTranslation = {
         <>
           <p>The app uses the following services:</p>
           <ul>
-            <li><strong>Railway</strong> — backend server hosting.</li>
-            <li><strong>MongoDB Atlas</strong> — database.</li>
-            <li><strong>Cloudinary</strong> — profile photo hosting.</li>
-            <li><strong>Firebase / Google</strong> — push notifications via FCM.</li>
-            <li><strong>RevenueCat</strong> — subscription and in-app purchase management.</li>
-            <li><strong>Stripe</strong> — payment processing for paid events.</li>
+            <li><strong>Railway</strong>:backend server hosting.</li>
+            <li><strong>MongoDB Atlas</strong>:database.</li>
+            <li><strong>Cloudinary</strong>:profile photo hosting.</li>
+            <li><strong>Firebase / Google</strong>:push notifications via FCM, and device integrity checks at sign-up via App Check / Play Integrity (<a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>).</li>
+            <li><strong>RevenueCat</strong>:subscription and in-app purchase management.</li>
+            <li><strong>Stripe</strong>:payment processing for paid events.</li>
+            <li><strong>Resend</strong>:transactional email delivery (verification and reset codes) (<a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>, <a href="https://resend.com/legal/dpa" target="_blank" rel="noopener noreferrer">DPA</a>).</li>
           </ul>
           <p>These services are subject to their own privacy policies.</p>
+          <p>
+            Resend is a company based in the United States. Transfers of data outside the European
+            Union are governed by its Data Processing Addendum (DPA), which relies on the European
+            Commission's Standard Contractual Clauses, and by its certification under the EU-U.S.
+            Data Privacy Framework.
+          </p>
         </>
       ),
     },
@@ -92,10 +133,10 @@ export const en: PolicyTranslation = {
         <>
           <p>Under the General Data Protection Regulation (GDPR):</p>
           <ul>
-            <li><BadgeYes>Access</BadgeYes> — you may request access to all your data.</li>
-            <li><BadgeYes>Rectification</BadgeYes> — you may update your data at any time from the app.</li>
-            <li><BadgeYes>Deletion</BadgeYes> — complete account and data deletion via the app.</li>
-            <li><BadgeYes>Portability</BadgeYes> — data export available upon request.</li>
+            <li><BadgeYes>Access</BadgeYes>:you may request access to all your data.</li>
+            <li><BadgeYes>Rectification</BadgeYes>:you may update your data at any time from the app.</li>
+            <li><BadgeYes>Deletion</BadgeYes>:complete account and data deletion via the app.</li>
+            <li><BadgeYes>Portability</BadgeYes>:data export available upon request.</li>
           </ul>
         </>
       ),
