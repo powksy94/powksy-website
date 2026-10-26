@@ -16,7 +16,7 @@ const webServices = [
 const mobileApps: { id: AppId; name: string; logo: string; packageId: string | null }[] = [
   { id: 'password', name: 'Password Mobile App', logo: passwordLogo, packageId: 'com.passwordmobileapp.app' },
   { id: 'dailyFacts', name: 'Daily Facts', logo: dailyFactsLogo, packageId: 'com.uzan.dailyfacts' },
-  { id: 'nocturne', name: 'Nocturne', logo: nocturneLogo, packageId: null },
+  { id: 'nocturne', name: 'Nocturne', logo: nocturneLogo, packageId: 'com.nocturne.app' },
 ]
 
 export default function Services() {
