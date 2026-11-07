@@ -20,7 +20,7 @@ function EventRow({ event, selected, onSelect }: { event: NocturneEvent; selecte
   return (
     <button
       onClick={onSelect}
-      className="flex items-start gap-3 px-5 py-4 text-left border-b transition-colors w-full"
+      className="flex items-start gap-3 px-4 md:px-5 py-4 text-left border-b transition-colors w-full"
       style={{ borderColor: '#7B00D415', backgroundColor: selected ? '#7B00D412' : 'transparent' }}
       onMouseEnter={e => { if (!selected) e.currentTarget.style.backgroundColor = '#7B00D408' }}
       onMouseLeave={e => { if (!selected) e.currentTarget.style.backgroundColor = 'transparent' }}
@@ -67,7 +67,7 @@ export default function EventsTab({ events, loading, error, selectedEvent, actio
 
       {/* Detail */}
       {selectedEvent ? (
-        <div className="flex-1 lg:w-3/5 overflow-y-auto px-8 py-7">
+        <div className="flex-1 min-w-0 lg:w-3/5 overflow-y-auto px-4 py-5 md:px-8 md:py-7">
           <EventDetail event={selectedEvent} actionLoading={actionLoading} actionError={actionError} onApprove={onApprove} onReject={onReject} onBack={onDeselect} />
         </div>
       ) : (

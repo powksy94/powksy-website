@@ -24,7 +24,7 @@ function DetailRow({ icon: Icon, label, children }: { icon: React.ElementType; l
       </div>
       <div className="min-w-0">
         <p className="text-xs mb-0.5" style={{ color: '#5B3D7A' }}>{label}</p>
-        <p className="text-sm" style={{ color: '#C4A8E0' }}>{children}</p>
+        <div className="text-sm break-words" style={{ color: '#C4A8E0' }}>{children}</div>
       </div>
     </div>
   )
@@ -48,7 +48,7 @@ export default function EventDetail({ event, actionLoading, actionError, onAppro
         </div>
       )}
 
-      <h2 className="text-xl font-bold text-white mb-1">{event.name}</h2>
+      <h2 className="text-xl font-bold text-white mb-1 break-words">{event.name}</h2>
 
       {event.type && (
         <span
@@ -103,7 +103,7 @@ export default function EventDetail({ event, actionLoading, actionError, onAppro
         {event.description && (
           <div className="rounded-xl p-4 mt-2" style={{ backgroundColor: '#1C0030', border: '1px solid #7B00D420' }}>
             <p className="text-xs mb-1" style={{ color: '#5B3D7A' }}>Description</p>
-            <p className="text-sm leading-relaxed" style={{ color: '#C4A8E0' }}>{event.description}</p>
+            <p className="text-sm leading-relaxed whitespace-pre-line break-words" style={{ color: '#C4A8E0' }}>{event.description}</p>
           </div>
         )}
       </div>

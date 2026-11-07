@@ -81,7 +81,7 @@ export default function Dashboard({ token, onLogout }: Props) {
   const onRefresh = () => tab === 'stats' ? fetchStats() : fetchEvents()
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: '#08000E' }}>
+    <div className="min-h-screen flex flex-col md:flex-row" style={{ backgroundColor: '#08000E' }}>
       <Sidebar
         tab={tab}
         onTabChange={setTab}
@@ -91,8 +91,8 @@ export default function Dashboard({ token, onLogout }: Props) {
 
       <main className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <div className="px-8 py-5 border-b flex items-center justify-between" style={{ borderColor: '#7B00D420' }}>
-          <div>
+        <div className="px-4 py-4 md:px-8 md:py-5 border-b flex items-center justify-between gap-3" style={{ borderColor: '#7B00D420' }}>
+          <div className="min-w-0">
             <h1 className="text-white font-semibold text-lg">
               {tab === 'stats' ? 'Statistiques' : 'Événements en attente'}
             </h1>
@@ -108,7 +108,7 @@ export default function Dashboard({ token, onLogout }: Props) {
         {/* Content */}
         <div className="flex-1 min-h-0 overflow-auto">
           {tab === 'stats' && (
-            <div className="px-8 py-8">
+            <div className="px-4 py-5 md:px-8 md:py-8">
               <StatsTab stats={stats} loading={statsLoading} error={statsError} onRetry={fetchStats} />
             </div>
           )}

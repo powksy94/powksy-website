@@ -25,8 +25,8 @@ function Sparkline({ data, accent }: { data: { date: string; value: number }[]; 
           contentStyle={{ backgroundColor: '#1C0030', border: '1px solid #7B00D430', borderRadius: 8, fontSize: 11 }}
           labelStyle={{ color: '#9B7DB8' }}
           itemStyle={{ color: accent }}
-          formatter={(v: number) => [v.toLocaleString('fr-FR'), '']}
-          labelFormatter={(d: string) => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
+          formatter={v => [Number(v).toLocaleString('fr-FR'), '']}
+          labelFormatter={d => new Date(String(d)).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
         />
         <Area
           type="monotone"
@@ -49,7 +49,7 @@ export default function StatCard({ label, value, icon: Icon, trend, accent = '#7
 
   return (
     <div
-      className="rounded-2xl p-5 border flex flex-col gap-3"
+      className="rounded-2xl p-4 md:p-5 border flex flex-col gap-3"
       style={{ backgroundColor: '#110018', borderColor: '#7B00D420' }}
     >
       {/* Header */}
@@ -62,7 +62,7 @@ export default function StatCard({ label, value, icon: Icon, trend, accent = '#7
 
       {/* Value + trend */}
       <div>
-        <p className="text-4xl font-bold text-white tracking-tight">
+        <p className="text-3xl md:text-4xl font-bold text-white tracking-tight">
           {value.toLocaleString('fr-FR')}
         </p>
         {pct !== undefined && (
