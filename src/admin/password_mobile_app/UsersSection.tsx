@@ -1,20 +1,12 @@
-import { useState, useEffect, Fragment } from 'react'
-import { RefreshCw, ChevronDown, ChevronRight } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { RefreshCw } from 'lucide-react'
 import { getUsers, updateRole } from './api'
 import type { User } from './api'
-import UserVaultStats from './UserVaultStats'
+import UserCard from './users/UserCard'
+import UserRow from './users/UserRow'
 
 interface Props {
   token: string
-}
-
-const ROLES = ['user', 'admin', 'team_admin']
-
-const roleBadge: Record<string, string> = {
-  admin:      'bg-violet-500/20 text-violet-300 border-violet-500/30',
-  team_admin: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-  viewer:     'bg-blue-500/20 text-blue-300 border-blue-500/30',
-  user:       'bg-gray-500/20 text-gray-400 border-gray-500/30',
 }
 
 export default function UsersSection({ token }: Props) {
@@ -106,7 +98,23 @@ export default function UsersSection({ token }: Props) {
 
       {users.length > 0 && (
         <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
-          <table className="w-full text-sm">
+          <ul className="md:hidden divide-y divide-white/5">
+            {users.map(user => (
+              <UserCard
+                key={user.id}
+                user={user}
+                token={token}
+                pendingRole={pendingRoles[user.id]}
+                saving={saving === user.id}
+                expanded={expandedUserId === user.id}
+                onRoleChange={role => handleRoleChange(user.id, role)}
+                onSave={() => handleSave(user.id)}
+                onToggleExpand={() => toggleExpand(user.id)}
+              />
+            ))}
+          </ul>
+
+          <table className="hidden md:table w-full text-sm">
             <thead>
               <tr className="border-b border-white/10 text-gray-500 text-xs uppercase tracking-wide">
                 <th className="text-left px-5 py-3 w-8"></th>
@@ -117,62 +125,20 @@ export default function UsersSection({ token }: Props) {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, i) => {
-                const pending = pendingRoles[user.id]
-                const isDirty = pending !== undefined && pending !== user.role
-                const expanded = expandedUserId === user.id
-                return (
-                  <Fragment key={user.id}>
-                    <tr className="border-b border-white/5 last:border-0 hover:bg-white/3 transition-colors">
-                      <td className="px-5 py-3.5">
-                        <button
-                          onClick={() => toggleExpand(user.id)}
-                          className="text-gray-600 hover:text-gray-300 transition-colors"
-                          aria-label="Voir les statistiques du coffre"
-                        >
-                          {expanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-                        </button>
-                      </td>
-                      <td className="px-5 py-3.5 text-gray-600">{i + 1}</td>
-                      <td className="px-5 py-3.5 text-gray-300 font-mono text-xs">{user.email}</td>
-                      <td className="px-5 py-3.5">
-                        <span className={`text-xs border px-2 py-0.5 rounded-full font-medium ${roleBadge[user.role] ?? roleBadge.user}`}>
-                          {user.role}
-                        </span>
-                      </td>
-                      <td className="px-5 py-3.5">
-                        <div className="flex items-center gap-2">
-                          <select
-                            value={pending ?? user.role}
-                            onChange={e => handleRoleChange(user.id, e.target.value)}
-                            className="bg-gray-900 border border-white/10 text-gray-300 text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-violet-500/50"
-                          >
-                            {ROLES.map(r => (
-                              <option key={r} value={r}>{r}</option>
-                            ))}
-                          </select>
-                          {isDirty && (
-                            <button
-                              onClick={() => handleSave(user.id)}
-                              disabled={saving === user.id}
-                              className="text-xs bg-violet-600/80 hover:bg-violet-600 transition-colors text-white px-3 py-1.5 rounded-lg disabled:opacity-50"
-                            >
-                              {saving === user.id ? '…' : 'Sauvegarder'}
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                    {expanded && (
-                      <tr className="border-b border-white/5 last:border-0 bg-white/2">
-                        <td colSpan={5} className="px-5">
-                          <UserVaultStats token={token} userId={user.id} />
-                        </td>
-                      </tr>
-                    )}
-                  </Fragment>
-                )
-              })}
+              {users.map((user, i) => (
+                <UserRow
+                  key={user.id}
+                  user={user}
+                  index={i}
+                  token={token}
+                  pendingRole={pendingRoles[user.id]}
+                  saving={saving === user.id}
+                  expanded={expandedUserId === user.id}
+                  onRoleChange={role => handleRoleChange(user.id, role)}
+                  onSave={() => handleSave(user.id)}
+                  onToggleExpand={() => toggleExpand(user.id)}
+                />
+              ))}
             </tbody>
           </table>
           <div className="px-5 py-2.5 border-t border-white/5 text-gray-600 text-xs">

@@ -95,8 +95,8 @@ export default function VaultItemCard({ item, vaultKey, token, onDeleted, onUpda
         />
       )}
 
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
-        <div className="flex items-start justify-between gap-3">
+      <div className="bg-white/5 border border-white/10 rounded-2xl p-3 sm:p-4">
+        <div className="flex items-start justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 bg-violet-600/15 rounded-xl flex items-center justify-center shrink-0">
               {item.type === 'file'
@@ -105,7 +105,7 @@ export default function VaultItemCard({ item, vaultKey, token, onDeleted, onUpda
             </div>
             <div className="min-w-0">
               <p className="text-white text-sm font-medium truncate">{item.name}</p>
-              <p className="text-gray-600 text-xs">
+              <p className="text-gray-600 text-xs truncate">
                 {item.type === 'file' && item.fileName ? item.fileName : 'note'} ·{' '}
                 {new Date(item.createdAt).toLocaleDateString('fr-FR')}
               </p>
@@ -117,19 +117,21 @@ export default function VaultItemCard({ item, vaultKey, token, onDeleted, onUpda
               <button
                 onClick={handleReveal}
                 disabled={decrypting}
+                title={revealed !== null ? 'Masquer' : 'Afficher'}
                 className="flex items-center gap-1 text-xs text-gray-400 hover:text-white px-2.5 py-1.5 rounded-lg hover:bg-white/5 transition-colors disabled:opacity-40"
               >
                 {revealed !== null ? <EyeOff size={13} /> : <Eye size={13} />}
-                {decrypting ? '…' : revealed !== null ? 'Masquer' : 'Afficher'}
+                <span className="hidden sm:inline">{decrypting ? '…' : revealed !== null ? 'Masquer' : 'Afficher'}</span>
               </button>
             ) : (
               <button
                 onClick={handleDownload}
                 disabled={decrypting}
+                title="Télécharger"
                 className="flex items-center gap-1 text-xs text-gray-400 hover:text-white px-2.5 py-1.5 rounded-lg hover:bg-white/5 transition-colors disabled:opacity-40"
               >
                 <Download size={13} />
-                {decrypting ? '…' : 'Télécharger'}
+                <span className="hidden sm:inline">{decrypting ? '…' : 'Télécharger'}</span>
               </button>
             )}
             <button

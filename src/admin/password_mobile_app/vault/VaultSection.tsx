@@ -49,9 +49,10 @@ export default function VaultSection({ token }: Props) {
         <div className="flex gap-2">
           <button
             onClick={() => setVaultKey(null)}
+            title="Verrouiller"
             className="flex items-center gap-1.5 text-gray-500 hover:text-gray-300 text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors"
           >
-            <Lock size={13} /> Verrouiller
+            <Lock size={13} /> <span className="hidden sm:inline">Verrouiller</span>
           </button>
           <button
             onClick={() => setShowAdd(v => !v)}

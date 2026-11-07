@@ -68,7 +68,7 @@ export default function UserVaultStats({ token, userId }: Props) {
     .filter(s => s.value > 0)
 
   return (
-    <div className="flex items-center gap-6 py-4 px-2">
+    <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 py-4 sm:px-2">
       {segments.length > 0 && (
         <div className="w-24 h-24 shrink-0">
           <ResponsiveContainer width="100%" height="100%">
@@ -108,7 +108,7 @@ export default function UserVaultStats({ token, userId }: Props) {
             <span className="text-gray-600"> ({stats.unrated} non noté{stats.unrated > 1 ? 's' : ''})</span>
           )}
         </p>
-        <div className="flex items-center gap-4 text-xs">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs">
           {(['strong', 'medium', 'weak', 'unrated'] as const).map(key => (
             <div key={key} className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[key] }} />

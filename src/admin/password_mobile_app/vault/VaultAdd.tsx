@@ -48,7 +48,7 @@ export default function VaultAdd({ vaultKey, token, onAdded, onClose }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white/5 border border-violet-500/20 rounded-2xl p-5 space-y-4">
+    <form onSubmit={handleSubmit} className="bg-white/5 border border-violet-500/20 rounded-2xl p-4 sm:p-5 space-y-4">
       <div className="flex items-center justify-between">
         <p className="text-white text-sm font-medium">Nouvel élément</p>
         <button type="button" onClick={onClose} className="text-gray-500 hover:text-gray-300 transition-colors">
@@ -56,7 +56,7 @@ export default function VaultAdd({ vaultKey, token, onAdded, onClose }: Props) {
         </button>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {(['note', 'file'] as AddType[]).map(t => (
           <button
             key={t} type="button" onClick={() => setType(t)}
