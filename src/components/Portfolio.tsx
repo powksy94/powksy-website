@@ -32,7 +32,7 @@ const projects: { id: ProjectId; tech: string[]; link: string }[] = [
   { id: 'anecdoteApp', tech: ['Flutter', 'Python'], link: 'https://github.com/powksy94/anecdote_app' },
   { id: 'rpgGame', tech: ['Python', 'MongoDB'], link: 'https://github.com/powksy94/BDD_python_game' },
   { id: 'datingApp', tech: ['Flutter', 'Dart'], link: 'https://github.com/powksy94/dating_app' },
-  { id: 'datingBackend', tech: ['TypeScript', 'Node.js', 'VanillaJS'], link: 'https://github.com/powksy94/dating_app_backend' },
+  { id: 'datingBackend', tech: ['TypeScript', 'Node.js'], link: 'https://github.com/powksy94/dating_app_backend' },
   { id: 'cobol', tech: ['COBOL'], link: 'https://github.com/powksy94/Cobol_test_transaction' },
   { id: 'cubeGame', tech: ['C#'], link: 'https://github.com/powksy94/cube-csharp-project' },
 ]
