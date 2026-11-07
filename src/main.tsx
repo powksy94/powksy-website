@@ -28,7 +28,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/nocturne/child-safety-standards" element={<LocalizedLegalPage configs={nocturneChildSafetyStandardsConfigs} />} />
         <Route path="/password-mobile-app/terms-of-service" element={<LocalizedLegalPage configs={passwordMobileAppTermsOfServices} />} />
         <Route path="/daily-facts/delete-account" element={<LocalizedLegalPage configs={dailyFactsDeleteAccountConfigs} />} />
-        {/* The locale comes from the first path segment (/en, /es, /pt-pt, /pt-br), French on / */}
+        {/* The locale comes from the first path segment (/en, /es, /pt-pt, /pt-br, /ar, /zh, /ja), French on / */}
         <Route path="/*" element={<I18nProvider><App /></I18nProvider>} />
       </Routes>
     </BrowserRouter>

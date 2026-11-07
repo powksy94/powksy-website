@@ -1,4 +1,4 @@
-export type LocaleCode = 'fr' | 'en' | 'es' | 'pt-PT' | 'pt-BR'
+export type LocaleCode = 'fr' | 'en' | 'es' | 'pt-PT' | 'pt-BR' | 'ar' | 'zh-CN' | 'ja'
 
 export interface LocaleInfo {
   code: LocaleCode
@@ -11,14 +11,17 @@ export interface LocaleInfo {
 }
 
 // To add a language: add it here and to LocaleCode, then create its folder in dictionaries/.
-// A right-to-left language (Arabic, Hebrew...) only needs dir: 'rtl', for example:
-// { code: 'ar', path: 'ar', label: 'العربية', short: 'AR', dir: 'rtl' }
+// A right-to-left language (Arabic, Hebrew...) only needs dir: 'rtl'.
+// Chinese and Japanese dictionaries use ASCII for punctuation that has a fullwidth look-alike (, : ; ( ) ?).
 export const LOCALES: LocaleInfo[] = [
   { code: 'fr', path: '', label: 'Français', short: 'FR', dir: 'ltr' },
   { code: 'en', path: 'en', label: 'English', short: 'EN', dir: 'ltr' },
   { code: 'es', path: 'es', label: 'Español', short: 'ES', dir: 'ltr' },
   { code: 'pt-PT', path: 'pt-pt', label: 'Português (Portugal)', short: 'PT-PT', dir: 'ltr' },
   { code: 'pt-BR', path: 'pt-br', label: 'Português (Brasil)', short: 'PT-BR', dir: 'ltr' },
+  { code: 'ar', path: 'ar', label: 'العربية', short: 'AR', dir: 'rtl' },
+  { code: 'zh-CN', path: 'zh', label: '简体中文', short: 'ZH', dir: 'ltr' },
+  { code: 'ja', path: 'ja', label: '日本語', short: 'JA', dir: 'ltr' },
 ]
 
 export const DEFAULT_LOCALE = LOCALES[0]

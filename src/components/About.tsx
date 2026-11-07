@@ -61,7 +61,8 @@ function TechBadge({ tech }: { tech: Tech }) {
           onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
         />
       )}
-      <span className="text-sm text-gray-300 font-medium whitespace-nowrap">{tech.name}</span>
+      {/* Without dir="ltr", the RTL page would render "C#" as "#C" */}
+      <span dir="ltr" className="text-sm text-gray-300 font-medium whitespace-nowrap">{tech.name}</span>
     </div>
   )
 }

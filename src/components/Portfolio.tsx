@@ -64,7 +64,8 @@ export default function Portfolio() {
               transition={{ duration: 0.4, delay: (i % 6) * 0.07 }}
             >
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-base font-semibold text-white leading-snug pe-2">{t.portfolio.projects[p.id].title}</h3>
+                {/* dir="auto": a title written only in Latin (e.g. "Cube Game (C# / WPF)") stays LTR on the Arabic page */}
+                <h3 dir="auto" className="text-base font-semibold text-white leading-snug pe-2">{t.portfolio.projects[p.id].title}</h3>
                 <ExternalLink size={16} className="text-gray-600 group-hover:text-violet-400 transition-colors shrink-0 mt-0.5" />
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">{t.portfolio.projects[p.id].description}</p>
@@ -72,6 +73,7 @@ export default function Portfolio() {
                 {p.tech.map(tag => (
                   <span
                     key={tag}
+                    dir="ltr"
                     className={`text-xs border px-2.5 py-0.5 rounded-full font-medium ${techColors[tag] ?? defaultColor}`}
                   >
                     {tag}
