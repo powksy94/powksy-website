@@ -12,6 +12,7 @@ import { nocturnePrivacyPolicies } from './content/privacyPolicy.nocturne.tsx'
 import { nocturneTermsOfServices } from './content/termsOfService.nocturne.tsx'
 import { passwordMobileAppTermsOfServices } from './content/termsOfService.passwordMobileApp.tsx'
 import { dailyFactsDeleteAccountConfigs } from './content/deleteAccount.dailyFacts.tsx'
+import { dailyFactsTermsOfServices } from './content/termsOfService.dailyFacts.tsx'
 import { nocturneDeleteAccountConfigs } from './content/deleteAccount.nocturne.tsx'
 import { nocturneChildSafetyStandardsConfigs } from './content/childSafetyStandards.nocturne.tsx'
 
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/nocturne/child-safety-standards" element={<LocalizedLegalPage configs={nocturneChildSafetyStandardsConfigs} />} />
         <Route path="/password-mobile-app/terms-of-service" element={<LocalizedLegalPage configs={passwordMobileAppTermsOfServices} />} />
         <Route path="/daily-facts/delete-account" element={<LocalizedLegalPage configs={dailyFactsDeleteAccountConfigs} />} />
+        <Route path="/daily-facts/terms-of-service" element={<LocalizedLegalPage configs={dailyFactsTermsOfServices} />} />
         {/* The locale comes from the first path segment (/en, /es, /pt-pt, /pt-br, /ar, /zh, /ja), French on / */}
         <Route path="/*" element={<I18nProvider><App /></I18nProvider>} />
       </Routes>
