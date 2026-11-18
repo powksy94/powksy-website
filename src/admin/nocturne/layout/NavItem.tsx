@@ -1,21 +1,22 @@
+import { NavLink } from "react-router-dom"
+
 interface Props {
+  to: string
   icon: React.ElementType
   label: string
-  active: boolean
-  onClick: () => void
   badge?: number
 }
 
-export default function NavItem({ icon: Icon, label, active, onClick, badge }: Props) {
+export default function NavItem({ to, icon: Icon, label, badge }: Props) {
   return (
-    <button
-      onClick={onClick}
+    <NavLink
+      to={to}
       className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm transition-all text-left"
-      style={{
-        backgroundColor: active ? '#7B00D420' : 'transparent',
-        color: active ? '#C4A8E0' : '#7B5590',
-        border: active ? '1px solid #7B00D430' : '1px solid transparent',
-      }}
+      style={({ isActive }) => ({
+        backgroundColor: isActive ? '#7B00D420' : 'transparent',
+        color: isActive ? '#C4A8E0' : '#7B5590',
+        border: isActive ? '1px solid #7B00D430' : '1px solid transparent',
+      })}
     >
       <Icon size={15} />
       <span className="flex-1">{label}</span>
@@ -24,6 +25,6 @@ export default function NavItem({ icon: Icon, label, active, onClick, badge }: P
           {badge}
         </span>
       )}
-    </button>
+    </NavLink>
   )
 }

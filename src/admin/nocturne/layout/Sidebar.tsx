@@ -1,12 +1,8 @@
 import { BarChart2, CalendarDays, LogOut } from 'lucide-react'
 import NavItem from './NavItem'
-
-
-type Tab = 'stats' | 'events'
+import { paths } from '../paths'
 
 interface Props {
-  tab: Tab
-  onTabChange: (tab: Tab) => void
   eventsBadge?: number
   onLogout: () => void
 }
@@ -28,7 +24,16 @@ function Logo() {
   )
 }
 
-export default function Sidebar({ tab, onTabChange, eventsBadge, onLogout }: Props) {
+function NavLinks({ eventsBadge }: { eventsBadge?: number }) {
+  return (
+    <>
+      <NavItem to={paths.stats} icon={BarChart2}      label="Statistiques" />
+      <NavItem to={paths.events} icon={CalendarDays}  label="Événements" badge={eventsBadge} />
+    </>
+  )
+}
+
+export default function Sidebar({ eventsBadge, onLogout }: Props) {
   return (
     <>
       {/* Mobile: top bar with the tabs below it */}
@@ -45,8 +50,7 @@ export default function Sidebar({ tab, onTabChange, eventsBadge, onLogout }: Pro
           </button>
         </div>
         <nav className="px-3 pb-3 grid grid-cols-2 gap-2">
-          <NavItem icon={BarChart2}    label="Statistiques" active={tab === 'stats'}  onClick={() => onTabChange('stats')} />
-          <NavItem icon={CalendarDays} label="Événements"   active={tab === 'events'} onClick={() => onTabChange('events')} badge={eventsBadge} />
+          <NavLinks eventsBadge={eventsBadge} />
         </nav>
       </header>
 
@@ -56,8 +60,7 @@ export default function Sidebar({ tab, onTabChange, eventsBadge, onLogout }: Pro
         </div>
 
         <nav className="flex-1 px-3 py-4 space-y-1">
-          <NavItem icon={BarChart2}    label="Statistiques" active={tab === 'stats'}  onClick={() => onTabChange('stats')} />
-          <NavItem icon={CalendarDays} label="Événements"   active={tab === 'events'} onClick={() => onTabChange('events')} badge={eventsBadge} />
+          <NavLinks eventsBadge={eventsBadge} />
         </nav>
 
         <div className="px-3 py-4 border-t" style={{ borderColor: '#7B00D420' }}>
