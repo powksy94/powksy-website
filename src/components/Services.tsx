@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Globe, Smartphone } from 'lucide-react'
 import dailyFactsLogo from '../assets/daily-facts-logo.png'
-import nocturneLogo from '../assets/nocturne-logo.png'
+import nocturneLogo from '../assets/nocturne-logo.webp'
 import passwordLogo from '../assets/password-mobile-app-logo.png'
 import type { AppId } from '../i18n/types'
 import { useI18n } from '../i18n/useI18n'
