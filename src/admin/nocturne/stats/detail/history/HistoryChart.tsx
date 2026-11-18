@@ -1,5 +1,5 @@
 import { Bar, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { formatDayLong, formatDayShort, formatNumber } from "../../../shared/format";
+import { formatDayLong, formatDayShort, formatNumber } from "@/admin/nocturne/shared/format";
 import { axisTick, CHART, tooltipProps } from "../../chartTheme";
 import type { HistoryPoint } from "../../types";
 
