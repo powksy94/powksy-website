@@ -7,7 +7,7 @@ import { useFetch } from "../../../shared/useFetch";
 import { paths } from "../../../paths";
 import type { Metric } from "../../metrics";
 import { getMetricHistory } from "../../statsApi";
-import { parsePeriod } from "../periods";
+import { parsePeriod, periodPhrase } from "../periods";
 import type { Period } from "../periods";
 import PeriodSelector from "../PeriodSelector";
 import ProfileDemographics from "../ProfileDemographics";
@@ -24,36 +24,36 @@ interface Props {
 export default function MetricDetail({ token, metric }: Props) {
     // Period lives in the URL so a refresh keeps it
     const [params, setParams] = useSearchParams()
-    const days = parsePeriod(params.get('days'))
+    const period = parsePeriod(params.get('period'))
 
     const load = useCallback(
-        (signal: AbortSignal) => getMetricHistory(token, metric.id, days, signal),
-        [token, metric.id, days],
+        (signal: AbortSignal) => getMetricHistory(token, metric.id, period, signal),
+        [token, metric.id, period],
     )
     const { data, loading, error, reload } = useFetch(load)
 
-    const changePeriod = (period: Period) => setParams({ days: String(period) }, { replace: true })
+    const changePeriod = (period: Period) => setParams({ period: String(period) }, { replace: true })
 
     return (
         <>
             <PageHeader
                 title={metric.label}
-                subtitle={`Évolution sur ${days} jours`}
+                subtitle={`Évolution ${periodPhrase(period)}`}
                 backTo={paths.stats}
                 onRefresh={reload}
                 refreshing={loading}
             />
             <div className="flex-1 min-h-0 overflow-auto px-4 py-5 md:px-8 md:py-8 space-y-4 md:space-y-6">
-                <PeriodSelector value={days} onChange={changePeriod} />
+                <PeriodSelector value={period} onChange={changePeriod} />
 
                 <LoadState loading={loading && !data} error={error} onRetry={reload}>
                     {data && (
                         <>
-                            <MetricSummary total={data.total} days={data.days} summary={summarize(data.history, data.total)}  accent={metric.accent} />
+                            <MetricSummary total={data.total} period={period} summary={summarize(data.history, data.total)}  accent={metric.accent} />
                             <Panel title="Chronologie">
                                 <HistoryChart history={data.history} accent={metric.accent} />
                             </Panel>
-                            {metric.id === 'profiles' && <ProfileDemographics token={token} />}
+                            {metric.id === 'profiles' && <ProfileDemographics token={token} period={period} />}
                             <Panel title="Détail par jour">
                                 <HistoryTable history={data.history} />
                             </Panel>

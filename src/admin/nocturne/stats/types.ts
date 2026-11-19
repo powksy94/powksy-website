@@ -1,5 +1,8 @@
 export type MetricId = 'users' | 'profiles' | 'likes' | 'matches' | 'messages'
 
+// Number of days, or 'all' for "since the app launch"
+export type PeriodParam = number | 'all'
+
 export interface HistoryPoint {
     date: string        // "YYYY-MM-DD", Europe/Paris day
     value: number

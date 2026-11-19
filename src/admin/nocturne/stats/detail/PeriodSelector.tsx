@@ -1,4 +1,4 @@
-import { PERIODS } from "./periods";
+import { PERIODS, periodLabel } from "./periods";
 import type { Period } from "./periods";
 
 interface Props {
@@ -19,7 +19,7 @@ export default function PeriodSelector({ value, onChange }: Props) {
                     className="px-3 py-1.5 rounded-lg text-xs font-medium transition-colors"
                     style={{ backgroundColor: active ? '#7B00D4' : 'transparent', color: active ? 'white' : '#9B7DB8' }}
                     >
-                        {p} jours
+                        {periodLabel(p)}
                     </button>
                 )
             })}

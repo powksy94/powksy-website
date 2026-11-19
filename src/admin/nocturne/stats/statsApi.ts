@@ -1,5 +1,5 @@
 import { BASE } from "../api";
-import type { MetricHistory, MetricId, ProfileDemographics, Stats } from "./types";
+import type { MetricHistory, MetricId, ProfileDemographics, Stats, PeriodParam } from "./types";
 
 async function getJson<T>(path: string, token: string, signal: AbortSignal | undefined, errorMessage: string): Promise<T> {
     const res = await fetch(`${BASE}${path}`, {
@@ -14,10 +14,10 @@ export function getStats(token: string, signal?: AbortSignal): Promise<Stats> {
     return getJson('/api/admin/stats', token, signal, 'Impossible de charger les stats.')
 }
 
-export function getMetricHistory(token: string, metric: MetricId, days: number, signal?: AbortSignal): Promise<MetricHistory> {
-    return getJson(`/api/admin/stats/${metric}/history?days=${days}`, token, signal, "Impossible de charger l'historique.")
+export function getMetricHistory(token: string, metric: MetricId, period: PeriodParam, signal?: AbortSignal): Promise<MetricHistory> {
+    return getJson(`/api/admin/stats/${metric}/history?days=${period}`, token, signal, "Impossible de charger l'historique.")
 }
 
-export function getProfileDemographics(token: string, signal?: AbortSignal): Promise<ProfileDemographics> {
-    return getJson('/api/admin/stats/profiles/demographics', token, signal, "Impossible de charger la démographie.")
+export function getProfileDemographics(token: string, period: PeriodParam, signal?: AbortSignal): Promise<ProfileDemographics> {
+    return getJson(`/api/admin/stats/profiles/demographics?days=${period}`, token, signal, "Impossible de charger la démographie.")
 }
