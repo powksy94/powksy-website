@@ -1,6 +1,9 @@
 import { buildLegalConfigs } from '../components/legal/buildLegalConfigs'
 import { fr } from './translations/nocturne/privacy.fr'
 import { en } from './translations/nocturne/privacy.en'
+import { es } from './translations/nocturne/privacy.es'
+import { pt } from './translations/nocturne/privacy.pt'
+import { de } from './translations/nocturne/privacy.de'
 
 const base = {
   appName: 'Nocturne',
@@ -34,4 +37,4 @@ const sectionDefs = [
   { icon: '📩', key: 'contact' },
 ]
 
-export const nocturnePrivacyPolicies = buildLegalConfigs(base, sectionDefs, { fr, en })
+export const nocturnePrivacyPolicies = buildLegalConfigs(base, sectionDefs, { fr, en, es, pt, de })
