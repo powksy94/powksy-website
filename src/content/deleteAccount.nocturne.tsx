@@ -1,6 +1,9 @@
 import { buildLegalConfigs } from '../components/legal/buildLegalConfigs'
 import { fr } from './translations/nocturne/deleteAccount.fr'
 import { en } from './translations/nocturne/deleteAccount.en'
+import { es } from './translations/nocturne/deleteAccount.es'
+import { pt } from './translations/nocturne/deleteAccount.pt'
+import { de } from './translations/nocturne/deleteAccount.de'
 
 const base = {
   appName: 'Nocturne',
@@ -27,4 +30,4 @@ const sectionDefs = [
   { icon: '📧', key: 'emailMethod' },
 ]
 
-export const nocturneDeleteAccountConfigs = buildLegalConfigs(base, sectionDefs, { fr, en })
+export const nocturneDeleteAccountConfigs = buildLegalConfigs(base, sectionDefs, { fr, en, es, pt, de })
