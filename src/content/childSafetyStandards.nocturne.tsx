@@ -1,6 +1,9 @@
 import { buildLegalConfigs } from '../components/legal/buildLegalConfigs'
 import { fr } from './translations/nocturne/childSafetyStandards.fr'
 import { en } from './translations/nocturne/childSafetyStandards.en'
+import { es } from './translations/nocturne/childSafetyStandards.es'
+import { pt } from './translations/nocturne/childSafetyStandards.pt'
+import { de } from './translations/nocturne/childSafetyStandards.de'
 
 const base = {
   appName: 'Nocturne',
@@ -27,4 +30,4 @@ const sectionDefs = [
   { icon: '🚨', key: 'reporting' },
 ]
 
-export const nocturneChildSafetyStandardsConfigs = buildLegalConfigs(base, sectionDefs, { fr, en })
+export const nocturneChildSafetyStandardsConfigs = buildLegalConfigs(base, sectionDefs, { fr, en, es, pt, de })
